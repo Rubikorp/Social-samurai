@@ -18,6 +18,9 @@
 }
 
 /* header */
+.content{
+
+}
 .header {
   grid-area: h;
   display: flex;
