@@ -1,0 +1,23 @@
+/* header */
+.header {
+    grid-area: h;
+    display: flex;
+    align-items: center;
+    background: black;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+    background: white;
+    border-radius: 50%;
+}
+
+.logo__dscr {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 10px;
+    color: white;
+}

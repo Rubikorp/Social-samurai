@@ -1,11 +1,12 @@
 import React from "react";
 import BgProfile from "../static/Bg-profile.jpg"
+import s from "./Profile.module.css"
 
 const Profile = () => {
     return (
-        <div className="content">
-            <img className="content__img" src={BgProfile}/>
-            <div className="containe">
+        <div className={s.content}>
+            <img className={s.content__img}src={BgProfile}/>
+            <div className={s.containe}>
                 <div>
                     ava +dscr
                 </div>
