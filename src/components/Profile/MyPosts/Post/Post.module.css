@@ -1,0 +1,50 @@
+.postContaine {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: normal;
+    border: darkred 2px solid;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.item {
+    display: flex;
+}
+
+.item p {
+    flex: 70%;
+    margin: 0;
+    padding: 0;
+    margin-left: 20px;
+}
+
+.item span {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: darkred;
+    border-radius: 50%;
+}
+.btn__containe {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    align-items: center;
+}
+button{
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    background: darkred;
+    font-weight: bold;
+    font-size: 14px;
+    }
+button:hover {
+    background: firebrick;
+}
