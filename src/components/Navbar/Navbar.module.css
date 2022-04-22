@@ -6,24 +6,25 @@
     font-weight: bold;
 }
 
-.nav__item a {
+.link {
+    display: block;
     text-decoration: none;
     color: white;
 }
-.nav__item{
+.link {
     padding-left: 20px;
     padding-top: 10px;
     padding-right: 20px;
     padding-bottom: 10px;
     cursor: pointer;
 }
-.nav__item:last-child{
+.link:last-child{
     margin-top: 30px;
 }
-.nav__item:hover {
+.link:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.active a{
+.active{
     color: red;
 }
