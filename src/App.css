@@ -13,5 +13,9 @@
   grid-gap: 10px;
 }
 
+.app-wrapper-content {
+  border: darkred 2px solid;
+}
+
 
 

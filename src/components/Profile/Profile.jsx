@@ -7,7 +7,7 @@ import MyPosts from "./MyPosts/MyPosts.jsx"
 const Profile = () => {
     return (
         <div className={s.content}>
-            <img className={s.content__img}src={BgProfile}/>
+            <img className={s.content__img} src={BgProfile}/>
             <div className={s.containe}>
                 <div className={s.containe__aboutMe}>
                     <img src={Avatar} alt="avatar"/>
@@ -21,7 +21,7 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <MyPosts />
+                <MyPosts/>
             </div>
         </div>
     )

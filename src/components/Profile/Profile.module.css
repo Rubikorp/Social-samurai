@@ -1,7 +1,6 @@
 /* Profile */
 .content {
     grid-area: c;
-    border: darkred 2px solid;
 }
 
 .content__img {

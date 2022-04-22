@@ -11,12 +11,9 @@ const Post = (props) => {
             </div>
             <div className={s.btn__containe}>
                 <button><span>&#128571;</span> Like</button>
-                <div>{props.likes}<span> &#10084;</span></div>
+                <div>{props.likesCount}<span> &#10084;</span></div>
             </div>
         </div>
-
-
-
     )
 }
 
