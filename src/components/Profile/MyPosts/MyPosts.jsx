@@ -1,6 +1,7 @@
 import s from "./MyPosts.module.css"
 import React from "react";
 import Post from "./Post/Post"
+import {Btn} from "../../UI/Buttons"
 
 const MyPosts = () => {
     return (
@@ -9,7 +10,7 @@ const MyPosts = () => {
             <div className={s.myPost}>
                 <textarea placeholder="your news.."></textarea>
                 <div className={s.buttons}>
-                    <button>Add post</button>
+                    <Btn text="Add post" />
                 </div>
             </div>
 

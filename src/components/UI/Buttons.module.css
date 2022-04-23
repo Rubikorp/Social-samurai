@@ -1,0 +1,28 @@
+.button, .buttonLike {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    color: white;
+    background: darkred;
+    font-weight: bold;
+}
+
+.button{
+    padding: 10px 20px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.buttonLike{
+    padding: 5px 10px;
+    color: white;
+    font-size: 14px;
+}
+
+.button:hover,
+.buttonLike:hover
+{
+    background: firebrick;
+}
+

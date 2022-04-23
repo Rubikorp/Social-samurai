@@ -1,27 +1,32 @@
 .containe {
-    overflow: auto;
+    height: 100%;
 }
 
 .dialogs {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    min-height: 80%;
+    grid-template-columns: 3fr 9fr;
 }
 
 .users {
     padding-right: 10px;
+    overflow: auto;
 }
 .list {
-
 }
 .item {
- padding: 20px;
+    display: block;
+    padding: 20px;
     font-size: 18px;
     text-decoration: none;
+    color: black;
+    overflow: paged-y-controls;
 }
 .item:hover {
     background: rgba(0,0,0, 0.1);
 }
 .active {
+    display: block;
     text-decoration: none;
     padding: 20px;
     color: darkred;
@@ -33,6 +38,11 @@
     flex: 65%;
     border-left: rgba(0,0,0, 0.5) 2px solid;
     padding: 0 20px;
+    overflow: auto;
+}
+
+.message__containe {
+    overflow: paged-y;
 }
 .message {
 

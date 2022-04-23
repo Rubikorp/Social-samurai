@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./Post.module.css"
+import {BtnLike} from "../../../UI/Buttons";
 
 
 const Post = (props) => {
@@ -10,7 +11,7 @@ const Post = (props) => {
                 <p>{props.message}</p>
             </div>
             <div className={s.btn__containe}>
-                <button><span>&#128571;</span> Like</button>
+                <BtnLike text="Like" />
                 <div>{props.likesCount}<span> &#10084;</span></div>
             </div>
         </div>
