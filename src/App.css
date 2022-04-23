@@ -1,6 +1,6 @@
 .app-wrapper {
   display: grid;
-  max-width: 1200px;
+  max-width: 960px;
   margin-left: auto;
   margin-right: auto;
 
@@ -16,6 +16,21 @@
 .app-wrapper-content {
   border: darkred 2px solid;
 }
-
+.container {
+  padding: 20px;
+  margin: 0px;
+}
+.bg {
+  background: white;
+}
+.color__font__white {
+  color: white;
+}
+.height__8vh {
+  height: 80vh;
+}
+.bg-black {
+  background: black;
+}
 
 

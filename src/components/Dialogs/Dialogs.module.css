@@ -1,3 +1,19 @@
 .containe {
-    padding: 20px;
+    overflow: auto;
+}
+
+.dialogs {
+    display: flex;
+    height: 80vh;
+    overflow: paged-y;
+}
+
+.users {
+    flex: 35%;
+    padding-right: 10px;
+}
+.chat {
+    flex: 65%;
+    border-left: rgba(0,0,0, 0.5) 2px solid;
+    padding: 0 20px;
 }

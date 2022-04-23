@@ -5,7 +5,7 @@ import Post from "./Post/Post"
 const MyPosts = () => {
     return (
         <div className={s.containe}>
-            My post
+            <div className='color__font__white'>My post</div>
             <div className={s.myPost}>
                 <textarea placeholder="your news.."></textarea>
                 <div className={s.buttons}>

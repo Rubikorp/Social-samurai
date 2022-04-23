@@ -8,7 +8,7 @@ const Profile = () => {
     return (
         <div className={s.content}>
             <img className={s.content__img} src={BgProfile}/>
-            <div className={s.containe}>
+            <div className='container'>
                 <div className={s.containe__aboutMe}>
                     <img src={Avatar} alt="avatar"/>
                     <div className={s.aboutMe}>

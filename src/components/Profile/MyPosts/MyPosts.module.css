@@ -17,8 +17,9 @@
     height: 60px;
     background: rgba(255, 0, 0, 0.2);
     font-size: 16px;
-    border: none;
+    border: red 1px solid;
     transition:  box-shadow 0.1s ease-in-out;
+    color: white;
 }
 .myPost textarea:hover {
     box-shadow: 0 0 10px rgba(255,0,0, 0.9);
