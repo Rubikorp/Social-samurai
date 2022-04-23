@@ -3,17 +3,37 @@
 }
 
 .dialogs {
-    display: flex;
-    height: 80vh;
-    overflow: paged-y;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
 }
 
 .users {
-    flex: 35%;
     padding-right: 10px;
 }
-.chat {
+.list {
+
+}
+.item {
+ padding: 20px;
+    font-size: 18px;
+    text-decoration: none;
+}
+.item:hover {
+    background: rgba(0,0,0, 0.1);
+}
+.active {
+    text-decoration: none;
+    padding: 20px;
+    color: darkred;
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.chats {
     flex: 65%;
     border-left: rgba(0,0,0, 0.5) 2px solid;
     padding: 0 20px;
+}
+.message {
+
 }
