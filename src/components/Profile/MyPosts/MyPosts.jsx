@@ -3,13 +3,11 @@ import React from "react";
 import Post from "./Post/Post"
 import {Btn} from "../../UI/Buttons"
 
-const MyPosts = () => {
-    let postData = [
-        {id:1, message:'Hi, how are you?', like: 3},
-        {id:2, message:'Its my first post', like: 4}
-    ]
-    let postElement = postData
-        .map(p => <Post message={p.message} likeCoun={p.like} />)
+
+
+const MyPosts = (props) => {
+    let postElement = props.postData
+        .map(p => (<Post message={p.message} likesCount={p.like} />))
     return (
         <div className={s.containe}>
             <div className='color__font__white'>My post</div>

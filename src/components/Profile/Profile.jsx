@@ -5,13 +5,13 @@ import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import s from "./Profile.module.css"
 import MyPosts from "./MyPosts/MyPosts.jsx"
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div className={s.content}>
             <img className={s.content__img} src={BgProfile}/>
             <div className='container'>
                 <ProfileInfo />
-                <MyPosts />
+                <MyPosts postData={props.postData}/>
             </div>
         </div>
     )
