@@ -23,6 +23,19 @@ const Message = (props) => {
 }
 
 const Dialogs = (props) => {
+    let dialogsData = [
+        {id:1, name: 'Ruslan'},
+        {id:2, name: 'Roman'},
+        {id:3, name: 'Elina'},
+        {id:4, name: 'Victor'},
+        {id:5, name: 'Dmitriy'},
+        {id:6, name: 'Aleksey'},
+    ]
+    let messagesData = [
+        {id:1, message: 'HI'},
+        {id:2, message: 'How are you?'},
+        {id:3, message: 'Ruslan'},
+    ]
     return (
         <div className='container bg height__8vh'>
             <h2 className={s.header}>Dialogs</h2>
@@ -30,19 +43,15 @@ const Dialogs = (props) => {
                 <div className={s.dialogs}>
                     <div className={s.users}>
                         <div className={s.list}>
-                            <DialogsItem name="Ruslan" id="1" />
-                            <DialogsItem name="Roman" id="2" />
-                            <DialogsItem name="Elina" id="3" />
-                            <DialogsItem name="Victor" id="4" />
-                            <DialogsItem name="Dmitriy" id="5" />
-                            <DialogsItem name="Aleksey" id="6" />
+                            <DialogsItem name={dialogsData[0].name} id={dialogsData[0].id} />
+                            <DialogsItem name={dialogsData[1].name} id={dialogsData[1].id} />
                         </div>
                     </div>
                     <div className={s.chats}>
                         <div className={s.message__containe}>
-                            <Message message="Hi"/>
-                            <Message message="How are you?"/>
-                            <Message message="Ruslan"/>
+                            <Message message={messagesData[0].message}/>
+                            <Message message={messagesData[1].message}/>
+                            <Message message={messagesData[2].message}/>
                         </div>
                     </div>
                 </div>
