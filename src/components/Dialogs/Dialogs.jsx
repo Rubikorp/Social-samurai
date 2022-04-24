@@ -36,6 +36,10 @@ const Dialogs = (props) => {
         {id:2, message: 'How are you?'},
         {id:3, message: 'Ruslan'},
     ]
+    let dialogsElement = dialogsData
+        .map(dialog => <DialogsItem name={dialog.name} id={dialog.id} />)
+    let messageElement = messagesData
+        .map(m => <Message message={m.message} />)
     return (
         <div className='container bg height__8vh'>
             <h2 className={s.header}>Dialogs</h2>
@@ -43,15 +47,12 @@ const Dialogs = (props) => {
                 <div className={s.dialogs}>
                     <div className={s.users}>
                         <div className={s.list}>
-                            <DialogsItem name={dialogsData[0].name} id={dialogsData[0].id} />
-                            <DialogsItem name={dialogsData[1].name} id={dialogsData[1].id} />
+                            {dialogsElement}
                         </div>
                     </div>
                     <div className={s.chats}>
                         <div className={s.message__containe}>
-                            <Message message={messagesData[0].message}/>
-                            <Message message={messagesData[1].message}/>
-                            <Message message={messagesData[2].message}/>
+                            {messageElement}
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,8 @@ const MyPosts = () => {
         {id:1, message:'Hi, how are you?', like: 3},
         {id:2, message:'Its my first post', like: 4}
     ]
+    let postElement = postData
+        .map(p => <Post message={p.message} likeCoun={p.like} />)
     return (
         <div className={s.containe}>
             <div className='color__font__white'>My post</div>
@@ -19,8 +21,7 @@ const MyPosts = () => {
             </div>
 
             <div className={s.posts}>
-                <Post message={postData[0].message} likesCount={postData[0].like}/>
-                <Post message={postData[1].message} likesCount={postData[1].like}/>
+                {postElement}
             </div>
         </div>
     )
