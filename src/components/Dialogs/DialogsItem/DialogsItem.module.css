@@ -1,0 +1,27 @@
+.item {
+    display: flex;
+    padding: 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+    overflow: paged-y-controls;
+}
+.item:hover {
+    background: rgba(0,0,0, 0.1);
+}
+.active {
+    display: flex;
+    text-decoration: none;
+    padding: 20px;
+    color: darkred;
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.dialogsItem img {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px red solid;
+}

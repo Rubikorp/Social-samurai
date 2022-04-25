@@ -5,7 +5,7 @@
 .dialogs {
     display: grid;
     min-height: 80%;
-    grid-template-columns: 3fr 9fr;
+    grid-template-columns: 4fr 8fr;
 }
 
 .users {
@@ -14,28 +14,8 @@
 }
 .list {
 }
-.item {
-    display: block;
-    padding: 20px;
-    font-size: 18px;
-    text-decoration: none;
-    color: black;
-    overflow: paged-y-controls;
-}
-.item:hover {
-    background: rgba(0,0,0, 0.1);
-}
-.active {
-    display: block;
-    text-decoration: none;
-    padding: 20px;
-    color: darkred;
-    font-weight: bold;
-    transform: scale(1.1);
-}
 
 .chats {
-    flex: 65%;
     border-left: rgba(0,0,0, 0.5) 2px solid;
     padding: 0 20px;
     overflow: auto;

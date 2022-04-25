@@ -1,0 +1,27 @@
+.friendsList {
+    color: white;
+    width: 100px;
+    padding: 20px;
+    font-size: 25px;
+}
+
+.friendsList img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: red 1px solid;
+}
+
+.overflow {
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.friendsItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    padding: 10px;
+}
