@@ -4,7 +4,7 @@ import s from "./Buttons.module.css"
 
 const Btn =(props)=> {
     return (
-        <button className={s.button}>{props.text}</button>
+        <button onClick={props.addPost} className={s.button}>{props.text}</button>
     )
 }
 
@@ -14,4 +14,10 @@ const BtnLike=(props)=> {
     )
 }
 
-export {Btn, BtnLike}
+const BtnAddMessage = (props) => {
+    return (
+        <button className={s.button}>{props.text}</button>
+    )
+}
+
+export {Btn, BtnLike, BtnAddMessage}

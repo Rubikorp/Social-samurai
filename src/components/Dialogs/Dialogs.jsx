@@ -2,6 +2,7 @@ import React from "react";
 import s  from "./Dialogs.module.css"
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Message from "./Messages/Message";
+import SendMessage from "./SendMessage/SendMessaje"
 
 
 const Dialogs = (props) => {
@@ -25,6 +26,7 @@ const Dialogs = (props) => {
                         <div className={s.message__containe}>
                             {messageElement}
                         </div>
+                        <SendMessage />
                     </div>
                 </div>
             </div>
