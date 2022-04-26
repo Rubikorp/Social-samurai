@@ -15,6 +15,7 @@
 }
 
 .item p {
+    word-break: break-all;
     flex: 70%;
     margin: 0;
     padding: 0;

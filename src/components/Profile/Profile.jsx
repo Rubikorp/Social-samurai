@@ -10,7 +10,11 @@ const Profile = (props) => {
             <img className={s.content__img} src={BgProfile}/>
             <div className='container'>
                 <ProfileInfo />
-                <MyPosts postData={props.state.postData} addPost={props.addPost}/>
+                <MyPosts
+                    updateNewPostText={props.updateNewPostText}
+                    postData={props.state.postData}
+                    addPost={props.addPost}
+                    newPostText={props.state.newPostText}/>
             </div>
         </div>
     )

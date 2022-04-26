@@ -8,11 +8,15 @@ import {Btn} from "../../UI/Buttons"
 const MyPosts = (props) => {
 
     let newPostElement = React.createRef();
+
     let addPost = () => {
-        let text = newPostElement.current.value;
-        props.addPost(text);
-        newPostElement.current.value = "";
+        props.addPost();
     };
+
+    let onPostChange =() => {
+        let text = newPostElement.current.value;
+        props.updateNewPostText(text)
+    }
 
 
     let postElement = props.postData
@@ -23,7 +27,9 @@ const MyPosts = (props) => {
             <div className={s.myPost}>
                 <textarea
                     ref={newPostElement}
-                    placeholder="your news.."></textarea>
+                    onChange={onPostChange}
+                    placeholder="your news.."
+                    value={props.newPostText}/>
                 <div className={s.buttons}>
                     <Btn addPost={addPost} text="Add post" />
                 </div>
