@@ -34,30 +34,32 @@ let store = {
             ]
         }
     },
-    _rerenderEntireTree() {
+    _callSubscriber() {
         console.log('state change')
     },
+
     getState() {
       return this._state
     },
-    addPost() {
-        let  newPost = {
-            id: 5,
-            message: this._state.profilePages.newPostText,
-            like: 0
-        };
-        this._state.profilePages.postData.unshift(newPost)
-        this._state.profilePages.newPostText = ''
-        this._rerenderEntireTree(this._state)
-    },
-
-    updateNewPostText(newText) {
-        this._state.profilePages.newPostText = newText;
-        this._rerenderEntireTree(this._state)
-    },
 
     subscribe(observer) {
-        this._rerenderEntireTree = observer       //observer addEventListener паттерны
+        this._callSubscriber = observer       //observer addEventListener паттерны
+    },
+
+    dispatch(action) { // type: 'ADD-POST'
+        if(action.type === 'ADD-POST') {
+            let  newPost = {
+                id: 5,
+                message: this._state.profilePages.newPostText,
+                like: 0
+            };
+            this._state.profilePages.postData.unshift(newPost)
+            this._state.profilePages.newPostText = ''
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePages.newPostText = action.newText;
+            this._callSubscriber(this._state)
+        }
     }
 }
 
