@@ -6,17 +6,16 @@
     font-weight: bold;
 }
 
-
-.link {
+.link, .active {
     display: block;
     text-decoration: none;
-    color: white;
     padding-left: 20px;
     padding-top: 10px;
     padding-right: 20px;
     padding-bottom: 10px;
     cursor: pointer;
 }
+
 .item:nth-child(5){
     margin-top: 20px;
 }
@@ -27,15 +26,12 @@
     background-color: rgba(255, 255, 255, 0.2);
 }
 
+.link {
+    color: white;
+}
+
 .active{
     color: red;
-    display: block;
-    text-decoration: none;
-    padding-left: 20px;
-    padding-top: 10px;
-    padding-right: 20px;
-    padding-bottom: 10px;
-    cursor: pointer;
 }
 
 .active:hover {

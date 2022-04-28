@@ -1,7 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SEND_MESSAGE = 'SEND-MESSAGE';
-const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 
 let store = {
     _state: {
@@ -10,7 +10,7 @@ let store = {
                 {id:1, message:'Hi, how are you?', like: 3},
                 {id:2, message:'Its my first post', like: 4}
             ],
-            newPostText: 'Привет, напиши на мне',
+            newPostText: '',
         },
         messagesPages: {
             messagesData: [
@@ -26,7 +26,7 @@ let store = {
                 {id:5, name: 'Dmitriy'},
                 {id:6, name: 'Aleksey'},
             ],
-            newMessage: '',
+            newMessageBody: '',
         },
         sitebar: {
             userList: [
@@ -65,25 +65,24 @@ let store = {
             this._state.profilePages.newPostText = action.newText;
             this._callSubscriber(this._state)
         } else if (action.type === 'SEND-MESSAGE') {
-            let newMessage = {id:5, message: this._state.messagesPages.newMessage}
+            let newMessage = {id:5, message: this._state.messagesPages.newMessageBody}
             this._state.messagesPages.messagesData.push(newMessage);
-            this._state.messagesPages.newMessage = '';
+            this._state.messagesPages.newMessageBody = '';
             this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-MESSAGE') {
-            this._state.messagesPages.newMessage = action.newMessage
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+            this._state.messagesPages.newMessageBody = action.newMessageBody
             this._callSubscriber(this._state)
         }
     }
 }
 
-export const sendMessageActionCreator = () => ({type: SEND_MESSAGE});
+export const sendMessageCreator = () => ({type: SEND_MESSAGE});
 
-export const updateNewMessageActionCreator = (message) =>
-    ({type: UPDATE_NEW_MESSAGE, newMessage: message})
+export const updateNewMessageBodyCreator = (body) =>
+    ({type: UPDATE_NEW_MESSAGE_BODY, newMessageBody: body})
+export const addPostCreator = () => ({type: ADD_POST});
 
-export const addPostActionCreator = () => ({type: ADD_POST});
-
-export const updateNewPostTextActionCreator = (text) =>
+export const updateNewPostTextCreator = (text) =>
     ({ type: UPDATE_NEW_POST_TEXT, newText: text})
 
 export default store

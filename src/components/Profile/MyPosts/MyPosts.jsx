@@ -2,21 +2,18 @@ import s from "./MyPosts.module.css"
 import React from "react";
 import Post from "./Post/Post"
 import {Btn} from "../../UI/Buttons"
-import {type} from "@testing-library/user-event/dist/type";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/state";
+import {addPostCreator, updateNewPostTextCreator} from "../../../Redux/state";
 
 
 const MyPosts = (props) => {
 
-    let newPostElement = React.createRef();
-
     let addPost = () => {
-        props.dispatch(addPostActionCreator());
+        props.dispatch(addPostCreator());
     };
 
-    let onPostChange =() => {
-        let text = newPostElement.current.value;
-        let action = updateNewPostTextActionCreator(text)
+    let onPostChange =(e) => {
+        let text = e.target.value;
+        let action = updateNewPostTextCreator(text)
         props.dispatch(action)
     }
 
@@ -28,7 +25,6 @@ const MyPosts = (props) => {
             <div className='color__font__white'>My post</div>
             <div className={s.myPost}>
                 <textarea
-                    ref={newPostElement}
                     onChange={onPostChange}
                     placeholder="your news.."
                     value={props.newPostText}/>

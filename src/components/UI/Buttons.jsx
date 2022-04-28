@@ -15,13 +15,10 @@ const BtnLike=(props)=> {
 }
 
 const BtnAddMessage = (props) => {
-    let sendMessage = () => {
-        props.dispatch(sendMessageActionCreator())
-    }
     return (
         <button
             className={s.button}
-            onClick={sendMessage}
+            onClick={props.sendMessage}
         >{props.text}</button>
     )
 }

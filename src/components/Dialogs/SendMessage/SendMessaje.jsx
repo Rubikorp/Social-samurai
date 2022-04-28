@@ -1,16 +1,17 @@
 import React from "react";
 import {BtnAddMessage} from "../../UI/Buttons";
 import styles from "./SendMessage.module.css"
-import {sendMessageActionCreator, updateNewMessageActionCreator} from "../../../Redux/state"
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../Redux/state"
 
 const SendMessage = (props) => {
 
-    let newElementMessage = React.createRef();
+    let sendMessage = () => {
+        props.dispatch(sendMessageCreator())
+    }
 
-    let onChangeMessage = () => {
-        let text = newElementMessage.current.value
-        let action = updateNewMessageActionCreator(text)
-        props.dispatch(action)
+    let onChangeMessage = (e) => {
+        let body = e.target.value;
+        props.dispatch(updateNewMessageBodyCreator(body))
     }
 
     return (
@@ -18,11 +19,10 @@ const SendMessage = (props) => {
             <textarea
                 className={styles.textarea}
                 onChange={onChangeMessage}
-                placeholder="Напишите сообщение"
-                ref={newElementMessage}
-                value={props.state.newMessage}
+                placeholder="Message..."
+                value={props.state.newMessageBody}
                />
-            <BtnAddMessage text='Send' dispatch={props.dispatch} />
+            <BtnAddMessage text='Send' sendMessage={sendMessage} />
         </div>
     )
 }

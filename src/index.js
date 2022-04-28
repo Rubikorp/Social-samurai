@@ -8,7 +8,7 @@ import ReactDOM from "react-dom/client";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-export let rerenderEntireTree = (state) => {
+let rerenderEntireTree = (state) => {
     root.render(
         <React.StrictMode>
             <App
