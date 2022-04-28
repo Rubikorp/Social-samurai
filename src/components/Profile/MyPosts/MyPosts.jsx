@@ -2,7 +2,7 @@ import s from "./MyPosts.module.css"
 import React from "react";
 import Post from "./Post/Post"
 import {Btn} from "../../UI/Buttons"
-import {addPostCreator, updateNewPostTextCreator} from "../../../Redux/state";
+import {addPostCreator, updateNewPostTextCreator} from "../../../Redux/profile-reducer";
 
 
 const MyPosts = (props) => {

@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./Buttons.module.css"
-import {sendMessageActionCreator} from "../../Redux/state"
 
 const Btn =(props)=> {
     return (

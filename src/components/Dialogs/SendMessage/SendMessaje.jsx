@@ -1,7 +1,7 @@
 import React from "react";
 import {BtnAddMessage} from "../../UI/Buttons";
 import styles from "./SendMessage.module.css"
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../Redux/state"
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../Redux/dialogs-reducer"
 
 const SendMessage = (props) => {
 
