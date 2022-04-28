@@ -5,15 +5,20 @@ import Message from "./Messages/Message";
 import SendMessage from "./SendMessage/SendMessaje"
 
 
+
+
 const Dialogs = (props) => {
+
     let dialogsElement = props.state.dialogsData
         .map(dialog => (<DialogsItem
             name={dialog.name}
             id={dialog.id} />));
     let messageElement = props.state.messagesData
         .map(m => (<Message message={m.message} />));
+
+
     return (
-        <div className='container bg height__8vh'>
+        <div className='container bg'>
             <h2 className={s.header}>Dialogs</h2>
             <div className={s.containe}>
                 <div className={s.dialogs}>
@@ -23,10 +28,14 @@ const Dialogs = (props) => {
                         </div>
                     </div>
                     <div className={s.chats}>
-                        <div className={s.message__containe}>
-                            {messageElement}
+                        <div className={s.overflow}>
+                            <div className={s.message__containe}>
+                                {messageElement}
+                            </div>
                         </div>
-                        <SendMessage />
+                        <SendMessage
+                            state={props.state}
+                            dispatch={props.dispatch}/>
                     </div>
                 </div>
             </div>

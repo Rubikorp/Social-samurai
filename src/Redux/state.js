@@ -1,3 +1,7 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
 
 let store = {
     _state: {
@@ -21,7 +25,8 @@ let store = {
                 {id:4, name: 'Victor'},
                 {id:5, name: 'Dmitriy'},
                 {id:6, name: 'Aleksey'},
-            ]
+            ],
+            newMessage: '',
         },
         sitebar: {
             userList: [
@@ -59,9 +64,27 @@ let store = {
         } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePages.newPostText = action.newText;
             this._callSubscriber(this._state)
+        } else if (action.type === 'SEND-MESSAGE') {
+            let newMessage = {id:5, message: this._state.messagesPages.newMessage}
+            this._state.messagesPages.messagesData.push(newMessage);
+            this._state.messagesPages.newMessage = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-MESSAGE') {
+            this._state.messagesPages.newMessage = action.newMessage
+            this._callSubscriber(this._state)
         }
     }
 }
+
+export const sendMessageActionCreator = () => ({type: SEND_MESSAGE});
+
+export const updateNewMessageActionCreator = (message) =>
+    ({type: UPDATE_NEW_MESSAGE, newMessage: message})
+
+export const addPostActionCreator = () => ({type: ADD_POST});
+
+export const updateNewPostTextActionCreator = (text) =>
+    ({ type: UPDATE_NEW_POST_TEXT, newText: text})
 
 export default store
 window.store = store

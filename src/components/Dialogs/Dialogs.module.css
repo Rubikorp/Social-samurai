@@ -9,16 +9,17 @@
 }
 
 .users {
-
-    overflow: auto;
+    height: 70vh;
+    overflow: scroll;
 }
 .list {
+    overflow: paged-y;
+
 }
 
 .chats {
     border-left: rgba(0,0,0, 0.5) 2px solid;
     padding: 0 20px;
-    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -26,7 +27,15 @@
 
 .message__containe {
     overflow: paged-y;
+    max-height: 500px;
 }
 .message {
+    padding: 20px;
+    margin: 10px;
+    background: rgba(255,0,0,0.1);
+}
+
+.overflow {
+    overflow: auto;
 
 }

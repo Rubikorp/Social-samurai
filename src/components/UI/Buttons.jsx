@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Buttons.module.css"
-
+import {sendMessageActionCreator} from "../../Redux/state"
 
 const Btn =(props)=> {
     return (
@@ -15,8 +15,14 @@ const BtnLike=(props)=> {
 }
 
 const BtnAddMessage = (props) => {
+    let sendMessage = () => {
+        props.dispatch(sendMessageActionCreator())
+    }
     return (
-        <button className={s.button}>{props.text}</button>
+        <button
+            className={s.button}
+            onClick={sendMessage}
+        >{props.text}</button>
     )
 }
 
