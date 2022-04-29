@@ -1,17 +1,16 @@
 import React from "react";
 import {BtnAddMessage} from "../../UI/Buttons";
 import styles from "./SendMessage.module.css"
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../Redux/dialogs-reducer"
 
 const SendMessage = (props) => {
 
-    let sendMessage = () => {
-        props.dispatch(sendMessageCreator())
+    let onSendMessage=()=>{
+        props.sendMessage()
     }
 
     let onChangeMessage = (e) => {
         let body = e.target.value;
-        props.dispatch(updateNewMessageBodyCreator(body))
+        props.onChangeMessage(body)
     }
 
     return (
@@ -20,9 +19,9 @@ const SendMessage = (props) => {
                 className={styles.textarea}
                 onChange={onChangeMessage}
                 placeholder="Message..."
-                value={props.state.newMessageBody}
+                value={props.newMessageBody}
                />
-            <BtnAddMessage text='Send' sendMessage={sendMessage} />
+            <BtnAddMessage text='Send' sendMessage={onSendMessage} />
         </div>
     )
 }

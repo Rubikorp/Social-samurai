@@ -2,18 +2,17 @@ import React from "react";
 import BgProfile from "../../static/Bg-profile.jpg"
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import s from "./Profile.module.css"
-import MyPosts from "./MyPosts/MyPosts.jsx"
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
+    debugger;
     return (
         <div className={s.content}>
             <img className={s.content__img} src={BgProfile}/>
             <div className='container'>
                 <ProfileInfo />
-                <MyPosts
-                    postData={props.state.postData}
-                    newPostText={props.state.newPostText}
-                    dispatch={props.dispatch}/>
+                <MyPostsContainer
+                    store={props.store}/>
             </div>
         </div>
     )

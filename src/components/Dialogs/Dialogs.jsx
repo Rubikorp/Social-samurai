@@ -9,11 +9,11 @@ import SendMessage from "./SendMessage/SendMessaje"
 
 const Dialogs = (props) => {
 
-    let dialogsElement = props.state.dialogsData
+    let dialogsElement = props.dialogsData
         .map(dialog => (<DialogsItem
             name={dialog.name}
             id={dialog.id} />));
-    let messageElement = props.state.messagesData
+    let messageElement = props.messagesData
         .map(m => (<Message message={m.message} />));
 
 
@@ -34,8 +34,10 @@ const Dialogs = (props) => {
                             </div>
                         </div>
                         <SendMessage
-                            state={props.state}
-                            dispatch={props.dispatch}/>
+                            sendMessage={props.sendMessage}
+                            onChangeMessage={props.onChangeMessage}
+                            newMessageBody={props.newMessageBody}
+                        />
                     </div>
                 </div>
             </div>

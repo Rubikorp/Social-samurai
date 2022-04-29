@@ -2,19 +2,16 @@ import s from "./MyPosts.module.css"
 import React from "react";
 import Post from "./Post/Post"
 import {Btn} from "../../UI/Buttons"
-import {addPostCreator, updateNewPostTextCreator} from "../../../Redux/profile-reducer";
 
 
 const MyPosts = (props) => {
-
-    let addPost = () => {
-        props.dispatch(addPostCreator());
+    let onAddPost = () => {
+        props.addPost()
     };
 
     let onPostChange =(e) => {
         let text = e.target.value;
-        let action = updateNewPostTextCreator(text)
-        props.dispatch(action)
+        props.updateNewPostText(text)
     }
 
 
@@ -29,7 +26,7 @@ const MyPosts = (props) => {
                     placeholder="your news.."
                     value={props.newPostText}/>
                 <div className={s.buttons}>
-                    <Btn addPost={addPost} text="Add post" />
+                    <Btn addPost={onAddPost} text="Add post" />
                 </div>
             </div>
 
