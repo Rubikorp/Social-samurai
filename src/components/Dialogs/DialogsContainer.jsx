@@ -10,7 +10,6 @@ let mapStateToProps = (state) => {
         newMessageBody: state.messagesPages.newMessageBody
     }
 }
-debugger;
 let mapDispatchToProps = (dispatch) => {
     return {
         sendMessage: () => {
