@@ -10,7 +10,7 @@ const Nav =(props)=> {
             <div className={styles.item}>
                 <NavLink
                     className={navData => navData.isActive ? styles.active : styles.link }
-                    to='/profile'>Profile</NavLink>
+                    to='/'>Profile</NavLink>
             </div>
             <div className={styles.item}>
                 <NavLink
@@ -33,7 +33,7 @@ const Nav =(props)=> {
                     to='/settings'>Settings</NavLink>
             </div>
             <div className={styles.item}>
-                <FriendsComponent store={props.store}/>
+                <FriendsComponent />
             </div>
         </nav>
     )

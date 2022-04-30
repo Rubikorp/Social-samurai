@@ -5,14 +5,12 @@ import s from "./Profile.module.css"
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
-    debugger;
     return (
         <div className={s.content}>
             <img className={s.content__img} src={BgProfile}/>
             <div className='container'>
                 <ProfileInfo />
-                <MyPostsContainer
-                    store={props.store}/>
+                <MyPostsContainer />
             </div>
         </div>
     )
