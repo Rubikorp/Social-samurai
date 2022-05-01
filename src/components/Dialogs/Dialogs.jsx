@@ -12,9 +12,11 @@ const Dialogs = (props) => {
     let dialogsElement = props.dialogsData
         .map(dialog => (<DialogsItem
             name={dialog.name}
-            id={dialog.id} />));
+            id={dialog.id}
+            key={dialog.id}
+        />));
     let messageElement = props.messagesData
-        .map(m => (<Message message={m.message} />));
+        .map(m => (<Message message={m.message} key={m.id}/>));
 
 
     return (
