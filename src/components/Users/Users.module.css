@@ -1,38 +1,36 @@
 .user__item {
     display: flex;
-    margin: 20px 0px;
-    padding: 20px;
+    margin: 10px 10px;
+    padding: 15px;
     background: black;
     color: white;
     box-shadow: -5px 5px 10px rgba(0,0,0, 0.1);
+    flex: 20%;
 }
 
 
 .users__right {
     width: 100%;
-    display: flex;
-    flex-direction: column;
 }
 .username {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
     padding-bottom: 10px;
 }
-.userstatus {
-    font-size: 20px;
+.user__status {
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: bold;
     color: rgba(255,255,255, 0.8);
-}
-.user__info {
-    flex: 50%;
+    border-bottom: 1px white solid;
 }
 .user__location{
-    display: flex;
-    font-size: 18px;
+    margin-top: 10px;
+    font-size: 16px;
     line-height: 150%;
 }
 .user__location div {
-    padding-left: 10px;
-    padding-right: 20px;
+    padding: 10px;
 }
 
 
@@ -70,4 +68,13 @@
 }
 .btn__unfollowed:hover {
     background: rgba(255,0,0, 0.8);
+}
+
+.selected_page {
+    font-weight: bold;
+}
+
+.container__users {
+    display: flex;
+    flex-wrap: wrap;
 }
