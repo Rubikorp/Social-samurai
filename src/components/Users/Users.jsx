@@ -4,13 +4,16 @@ import * as axios from "axios";
 import userPhoto from "../../assets/img/user.jpg"
 
 const Users = (props) => {
+  let getUsers = () => {
     if (props.users.length === 0) {
 
-        axios
-          .get("https://social-network.samuraijs.com/api/1.0/users")
-          .then(response => {
-              props.setUsers(response.data.items)
-          })
+      axios
+        .get("https://social-network.samuraijs.com/api/1.0/users")
+        .then(response => {
+          debugger;
+          props.setUsers(response.data.items)
+        })
+    }
 
         // props.setUsers([
         //     {
@@ -74,6 +77,9 @@ const Users = (props) => {
 
     return (
         <div className="container bg">
+            <button
+              className={styles.btn__followed}
+              onClick={getUsers}>Get Users</button>
             {
                 props.users.map(u => <div className={styles.user__item} key={u.id}>
                     <div className={styles.users__left}>
@@ -82,7 +88,7 @@ const Users = (props) => {
                               className={styles.users__avatar}
                               src={u.photos.small != null
                                 ? u.photos.small
-                              : userPhoto} alt=""/>
+                                : userPhoto} alt=""/>
                         </div>
                         <div>
                             <button
