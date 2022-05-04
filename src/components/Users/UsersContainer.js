@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    ToogleIsFetchingAC,
-    unFollowAC
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toogleIsFetching,
+    unFollow
 } from "../../Redux/users-reducer";
 import * as axios from 'axios';
 import Users from './Users';
@@ -70,28 +70,34 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userID) => {
-          dispatch(followAC(userID))
-        },
-        unFollow: (userID) => {
-            dispatch(unFollowAC(userID))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount: (totalUserCount) => {
-            dispatch(setTotalUsersCountAC(totalUserCount))
-        },
-        toogleIsFetching: (isFetching) => {
-            dispatch(ToogleIsFetchingAC(isFetching))
-        }
-    }
-}
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (userID) => {
+//           dispatch(followAC(userID))
+//         },
+//         unFollow: (userID) => {
+//             dispatch(unFollowAC(userID))
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setCurrentPage: (pageNumber) => {
+//             dispatch(setCurrentPageAC(pageNumber))
+//         },
+//         setTotalUsersCount: (totalUserCount) => {
+//             dispatch(setTotalUsersCountAC(totalUserCount))
+//         },
+//         toogleIsFetching: (isFetching) => {
+//             dispatch(ToogleIsFetchingAC(isFetching))
+//         }
+//     }
+// }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
+export default connect(mapStateToProps, {
+    follow,
+    unFollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toogleIsFetching})(UsersAPIComponent);
