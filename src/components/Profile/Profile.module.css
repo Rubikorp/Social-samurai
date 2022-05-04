@@ -1,4 +1,4 @@
-/* Profile */
+/* Профиль */
 .content {
     grid-area: c;
     background: black;
@@ -11,28 +11,81 @@
 }
 
 
-/*About me*/
-.containe__aboutMe {
+/*Обо мне*/
+.status {
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: rgba(255, 255, 255, 0.2) 2px solid;
+}
+
+.container__aboutMe {
     display: flex;
     color: white;
 }
-.containe__aboutMe img {
-    width: 100px;
-    height: 100px;
+.container__aboutMe img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
     border: red 1px solid;
 }
-.containe__aboutMe h2 {
+.container__aboutMe h2 {
     margin: 0;
     padding: 0;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     line-height: normal;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 
 }
 
 .aboutMe {
     padding-left: 30px;
     padding-right: 20px;
+}
+
+/* Контакты */
+
+.contacts {
+    padding: 5px;
+    margin-top: 15px;
+    background: rgba(255,0,0,0.15);
+    border: 1px red solid;
+}
+
+.link__item {
+    padding: 5px;
+}
+
+.link {
+    text-decoration: none;
+    color: red;
+    transition: border-bottom 1s ease-in-out;
+    position: relative;
+}
+
+.link:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 1px; /* Высота линии */
+    background-color: black; /* Цвет подчеркивания при исчезании линии*/
+    transition: width 0.5s; /* Время эффекта */
+}
+
+.link:hover:after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px; /* Высота линии */
+    background-color: red; /* Цвет подчеркивания при появлении линии*/
+    transition: width 0.5s;  /* Время эффекта */
 }
 
