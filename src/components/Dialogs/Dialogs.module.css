@@ -30,6 +30,7 @@
     max-height: 500px;
 }
 .message {
+    word-break: break-all;
     padding: 20px;
     margin: 10px;
     background: rgba(255,0,0,0.1);

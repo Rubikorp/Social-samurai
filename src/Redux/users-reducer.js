@@ -3,12 +3,14 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_TOTAL_USER_COUNT = 'SET-TOTAL-USER-COUNT';
+const TOOGLE_IS_FETCHING = 'TOOGLE_IS_FETCHING';
 
 let initialState = {
   users: [],
   pageSize: 8,
   totalUserCount: 0,
   currentPage: 1,
+  isFetching: false,
 }
 
 const usersReducer = (state=initialState, action) => {
@@ -19,8 +21,8 @@ const usersReducer = (state=initialState, action) => {
         users: state.users.map(u => {
           if (u.id === action.userID) {
             return ({...u, followed: true})
-            return u
           }
+          return u
         })
       })
     case UNFOLLOW:
@@ -29,8 +31,8 @@ const usersReducer = (state=initialState, action) => {
         users: state.users.map(u => {
           if (u.id === action.userID) {
             return ({...u, followed: false})
-            return u
           }
+          return u
         })
       })
     case SET_USERS:
@@ -45,16 +47,21 @@ const usersReducer = (state=initialState, action) => {
       return ({
         ...state, totalUserCount: action.totalUserCount
       })
+    case TOOGLE_IS_FETCHING:
+      return ({
+        ...state, isFetching: action.isFetching
+      })
     default:
       return state
   }
 }
 
-export const followAC = (userID) => ({type: FOLLOW, userID})
-export const unFollowAC = (userID) => ({type: UNFOLLOW, userID})
-export const setUsersAC = (users) => ({type: SET_USERS, users})
-export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const followAC = (userID) => ({type: FOLLOW, userID});
+export const unFollowAC = (userID) => ({type: UNFOLLOW, userID});
+export const setUsersAC = (users) => ({type: SET_USERS, users});
+export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCountAC = (totalUserCount) =>
-({type:SET_TOTAL_USER_COUNT, totalUserCount})
+({type:SET_TOTAL_USER_COUNT, totalUserCount});
+export const ToogleIsFetchingAC = (isFetching) => ({type: TOOGLE_IS_FETCHING, isFetching});
 
 export default usersReducer

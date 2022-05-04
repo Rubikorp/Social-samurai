@@ -1,3 +1,11 @@
+:root {
+    --main-color: white;
+    --size-large: 19px;
+    --size-medium: 16px;
+    --size-small: 15px;
+}
+
+
 .user__item {
     display: flex;
     margin: 10px 10px;
@@ -7,51 +15,66 @@
     box-shadow: -5px 5px 10px rgba(0,0,0, 0.1);
     flex: 20%;
 }
+.users__left {
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 .users__right {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .username {
-    font-size: 20px;
+    font-size: var(--size-large);
     font-weight: bold;
     padding-bottom: 10px;
+    word-break: break-all;
 }
 .user__status {
-    margin-bottom: 5px;
-    font-size: 18px;
+    padding-bottom: 5px;
+    font-size: var(--size-medium);
     font-weight: bold;
     color: rgba(255,255,255, 0.8);
     border-bottom: 1px white solid;
+    word-break: break-all;
 }
 .user__location{
     margin-top: 10px;
-    font-size: 16px;
+    font-size: var(--size-small);
     line-height: 150%;
+    color: firebrick;
+    font-weight: bold;
 }
 .user__location div {
-    padding: 10px;
+    color: var(--main-color);
+    font-weight: lighter;
 }
 
 
 
 .users__avatar {
-    margin-right: 30px;
     object-fit: cover;
-    width: 125px;
-    height: 125px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     border: red 2px solid;
 }
 
 .btn__followed, .btn__unfollowed {
-    margin-top: 20px;
-    padding: 5px 15px;
+    margin-top: 10px;
+    padding: 5px 10px;
     text-decoration: none;
     border: none;
     font-weight: bold;
-    font-size: 20px;
+    font-size: var(--size-large);
     color: white;
+    width: 100%;
 }
 
 .btn__followed {
@@ -77,4 +100,40 @@
 .container__users {
     display: flex;
     flex-wrap: wrap;
+}
+
+/* Animations loader */
+.container__loader{
+    position: absolute;
+    top: 53.5%;
+    left: 53.5%;
+}
+
+
+.loader10{
+    width:100px;
+    height:100px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+@keyframes load{
+    50%{
+        transform:rotatez(180deg);
+        border-style:dashed;
+        border-color:red maroon indianred orangered;
+    }
+    100%{
+        transform:rotatez(360deg);
+    }
+}
+.loader10::before{
+    content:"";
+    color:white;
+    height:50px;
+    width:50px;
+    background:transparent;
+    border-radius:50%;
+    border:20px solid red;
+    animation:load 1s infinite;
 }
