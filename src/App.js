@@ -20,7 +20,7 @@ function App(props) {
               <Nav />
               <div className="app-wrapper-content">
                   <Routes>
-                      <Route path="/profile/:userId?"
+                      <Route path="/profile/*"
                              element={<ProfileContainer />} />
                       <Route path="/dialogs/*"
                              element={<DialogsContainer/>} />

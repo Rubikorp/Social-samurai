@@ -1,22 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {
-    follow,
-    setCurrentPage,
-    setTotalUsersCount,
-    setUsers,
-    toogleIsFetching,
-    unFollow
+  follow,
+  setCurrentPage,
+  setTotalUsersCount,
+  setUsers, toogleFollowingProgress,
+  toogleIsFetching,
+  unFollow
 } from "../../Redux/users-reducer";
 import Users from './Users';
 import Preloaded from './Preloader';
 import {userAPI} from "../../api/api";
 
 class UsersAPIComponent extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.toogleIsFetching(true)
 
@@ -25,7 +21,7 @@ class UsersAPIComponent extends React.Component {
                   this.props.setTotalUsersCount(data.totalCount)
                   this.props.toogleIsFetching(false)
               });
-        }
+    }
 
     onPageChanged = (pageNumber) => {
         this.props.toogleIsFetching(true)
@@ -36,21 +32,37 @@ class UsersAPIComponent extends React.Component {
           });
     }
 
+    unfollowUser = (userId) => {
+      this.props.toogleFollowingProgress(true, userId)
+      userAPI.deleteFollowUser(userId).then(data => {
+        if(data.resultCode === 0) {
+          this.props.unFollow(userId)
+        }
+        this.props.toogleFollowingProgress(false, userId)
+      })
+    }
+
+    followUser = (userId) => {
+      this.props.toogleFollowingProgress(true, userId)
+      userAPI.postFollowUser(userId).then(data => {
+        if(data.resultCode === 0) {
+          this.props.follow(userId)
+        }
+        this.props.toogleFollowingProgress(false, userId)
+      })
+    }
+
+
     render() {
         return (
           <>
               {this.props.isFetching
                 ? <Preloaded />
                 : ''}
-              <Users
-                totalUserCount={this.props.totalUserCount}
-                pageSize={this.props.pageSize}
+              <Users {...this.props}
                 onPageChanged={this.onPageChanged}
-                users={this.props.users}
-                unFollow={this.props.unFollow}
-                follow={this.props.follow}
-                deleteFollowUser={userAPI.deleteFollowUser}
-                postFollowUser={userAPI.postFollowUser}
+                unFollow={this.unfollowUser}
+                follow={this.followUser}
               />
           </>
         )
@@ -64,6 +76,7 @@ let mapStateToProps = (state) => {
         totalUserCount: state.usersPage.totalUserCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        followProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -97,4 +110,5 @@ export default connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    toogleIsFetching})(UsersAPIComponent);
+    toogleIsFetching,
+    toogleFollowingProgress})(UsersAPIComponent);

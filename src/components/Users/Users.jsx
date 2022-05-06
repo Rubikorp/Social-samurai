@@ -29,19 +29,10 @@ const Users = (props) => {
 								className={u.followed
 									? styles.btn__unfollowed
 									: styles.btn__followed}
+								disabled={props.followProgress.some(id => id === u.id)}
 								onClick={u.followed
-									? () => { props.deleteFollowUser(u.id).then(data => {
-										if(data.resultCode === 0) {
-											props.unFollow(u.id)
-										}
-									})
-									}
-									: () => { props.postFollowUser(u.id).then(data => {
-										if(data.resultCode === 0) {
-											props.follow(u.id)
-										}
-									})
-								}}>
+									? () => { props.unFollow(u.id) }
+									: () => { props.follow(u.id) }}>
 								{u.followed ? 'Unfollowed' : 'Followed'}
 							</button>
 						</div>
@@ -68,7 +59,9 @@ const Users = (props) => {
 				{pages.map(p => {
 					return (<button
 						className={props.currentPage === p
-						&& styles.selected_page}
+							? styles.selected_page
+							: ''}
+						key={p}
 						onClick={(e) => {
 							props.onPageChanged(p)
 						}}

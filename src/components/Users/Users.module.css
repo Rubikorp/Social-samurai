@@ -95,6 +95,7 @@
 
 .selected_page {
     font-weight: bold;
+    background: red;
 }
 
 .container__users {
