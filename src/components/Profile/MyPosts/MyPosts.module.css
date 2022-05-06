@@ -1,4 +1,4 @@
-.containe{
+.container{
     margin-top: 15px;
     font-size: 20px;
     font-weight: bold;
@@ -28,10 +28,6 @@
     outline: red 1px solid;
 }
 .buttons{
- display: flex;
-    justify-content: end;
-}
-
-.posts {
-
+    display: flex;
+    justify-content: flex-end;
 }

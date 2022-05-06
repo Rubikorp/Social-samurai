@@ -1,4 +1,4 @@
-import s from "./MyPosts.module.css"
+import styles from "./MyPosts.module.css"
 import React from "react";
 import Post from "./Post/Post"
 import {Btn} from "../../UI/Buttons"
@@ -18,19 +18,19 @@ const MyPosts = (props) => {
     let postElement = props.postData
         .map(p => (<Post message={p.message} likesCount={p.like} />))
     return (
-        <div className={s.containe}>
+        <div className={styles.container}>
             <div className='color__font__white'>My post</div>
-            <div className={s.myPost}>
+            <div className={styles.myPost}>
                 <textarea
                     onChange={onPostChange}
                     placeholder="your news.."
                     value={props.newPostText}/>
-                <div className={s.buttons}>
+                <div className={styles.buttons}>
                     <Btn addPost={onAddPost} text="Add post" />
                 </div>
             </div>
 
-            <div className={s.posts}>
+            <div className={styles.posts}>
                 {postElement}
             </div>
         </div>
