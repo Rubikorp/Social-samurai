@@ -3,9 +3,15 @@
     grid-area: h;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background: black;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.logo__block {
+    display: flex;
+    align-items: center;
 }
 
 .logo {
@@ -20,4 +26,22 @@
     font-weight: bold;
     margin-left: 10px;
     color: white;
+}
+
+.login {
+    text-decoration: none;
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border: red 1px solid;
+    background: rgba(255,0,0,0.2);
+    transition: color 0.2s ease-in-out;
+}
+
+.login:hover {
+    background:rgba(255,0,0,0.4);
+}
+.login:active {
+    background:rgba(255,0,0,0.3);
 }

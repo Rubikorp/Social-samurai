@@ -11,9 +11,6 @@ class ProfileContainer extends  React.Component {
   componentDidMount() {
     let userId
     Object.entries(this.props.params).map(p => userId = p[1])
-    if (userId === null) {
-      userId = 2
-    }
     axios
       .get('https://social-network.samuraijs.com/api/1.0/profile/' + userId )
       .then(response => {
@@ -32,7 +29,8 @@ class ProfileContainer extends  React.Component {
 }
 
 let mapStateToProps = (state) => ({
-    profile: state.profilePages.profile
+    profile: state.profilePages.profile,
+    myId: state.auth.userId
 });
 
 const withRouter = (WrappedComponent: typeof React.Component) => {
