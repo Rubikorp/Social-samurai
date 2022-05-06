@@ -8,9 +8,9 @@ import {
     toogleIsFetching,
     unFollow
 } from "../../Redux/users-reducer";
-import * as axios from 'axios';
 import Users from './Users';
 import Preloaded from './Preloader';
+import {userAPI} from "../../api/api";
 
 class UsersAPIComponent extends React.Component {
     constructor(props) {
@@ -19,28 +19,19 @@ class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
         this.props.toogleIsFetching(true)
-        if (this.props.users.length === 0 ) {
-            axios
-              .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
-                withCredentials: true
-              })
-              .then(response => {
-                  this.props.setUsers(response.data.items)
-                  this.props.setTotalUsersCount(response.data.totalCount)
+
+        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+                  this.props.setUsers(data.items)
+                  this.props.setTotalUsersCount(data.totalCount)
                   this.props.toogleIsFetching(false)
               });
         }
-    }
 
     onPageChanged = (pageNumber) => {
         this.props.toogleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
-        axios
-          .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,{
-            withCredentials: true
-          })
-          .then(response => {
-              this.props.setUsers(response.data.items)
+        userAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
+              this.props.setUsers(data.items)
               this.props.toogleIsFetching(false)
           });
     }
@@ -58,6 +49,8 @@ class UsersAPIComponent extends React.Component {
                 users={this.props.users}
                 unFollow={this.props.unFollow}
                 follow={this.props.follow}
+                deleteFollowUser={userAPI.deleteFollowUser}
+                postFollowUser={userAPI.postFollowUser}
               />
           </>
         )

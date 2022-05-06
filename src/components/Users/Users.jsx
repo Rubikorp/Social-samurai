@@ -30,31 +30,17 @@ const Users = (props) => {
 									? styles.btn__unfollowed
 									: styles.btn__followed}
 								onClick={u.followed
-									? () => {
-										axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
-											withCredentials:true,
-											headers: {
-												"API-KEY": "07434d35-0284-4cb3-9b9e-6f06eb91fe0b"
-											}
-										})
-											.then(responce => {
-												if (responce.data.resultCode ===0) {
-													props.unFollow(u.id)
-												}
-											})
+									? () => { props.deleteFollowUser(u.id).then(data => {
+										if(data.resultCode === 0) {
+											props.unFollow(u.id)
 										}
-									: () => {
-										axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},{
-											withCredentials:true,
-											headers: {
-												"API-KEY": "07434d35-0284-4cb3-9b9e-6f06eb91fe0b"
-											}
-										})
-											.then(responce => {
-												if (responce.data.resultCode ===0) {
-													props.follow(u.id)
-												}
-											})
+									})
+									}
+									: () => { props.postFollowUser(u.id).then(data => {
+										if(data.resultCode === 0) {
+											props.follow(u.id)
+										}
+									})
 								}}>
 								{u.followed ? 'Unfollowed' : 'Followed'}
 							</button>
