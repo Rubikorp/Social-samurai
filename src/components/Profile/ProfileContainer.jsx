@@ -2,7 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getUserProfile} from "../../Redux/profile-reducer";
-import {useParams} from "react-router";
+import {Navigate, useParams} from "react-router";
 
 
 class ProfileContainer extends  React.Component {
@@ -17,6 +17,8 @@ class ProfileContainer extends  React.Component {
   }
 
   render() {
+    if (!this.props.isAuth) return <Navigate to={"/login"} />;
+
     return (
       <Profile
         {...this.props}
@@ -27,7 +29,8 @@ class ProfileContainer extends  React.Component {
 
 let mapStateToProps = (state) => ({
     profile: state.profilePages.profile,
-    myId: state.auth.userId
+    myId: state.auth.userId,
+    isAuth: state.auth.isAuth
 });
 
 const withRouter = (WrappedComponent: typeof React.Component) => {

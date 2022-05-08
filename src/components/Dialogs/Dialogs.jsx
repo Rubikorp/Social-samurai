@@ -3,6 +3,7 @@ import s  from "./Dialogs.module.css"
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Message from "./Messages/Message";
 import SendMessage from "./SendMessage/SendMessaje"
+import {Navigate} from "react-router";
 
 
 
@@ -17,6 +18,7 @@ const Dialogs = (props) => {
         />));
     let messageElement = props.messagesData
         .map(m => (<Message message={m.message} key={m.id}/>));
+    if (!props.isAuth) return <Navigate to={"/login"} />;
 
 
     return (

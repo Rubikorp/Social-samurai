@@ -1,6 +1,6 @@
 import React from "react";
 import BgProfile from "../../static/Bg-profile.jpg"
-import ProfileInfo from "../ProfileInfo/ProfileInfo";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import s from "./Profile.module.css"
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
