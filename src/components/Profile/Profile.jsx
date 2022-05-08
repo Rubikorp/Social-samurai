@@ -7,7 +7,7 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 const Profile = (props) => {
     return (
         <div className={s.content}>
-            <img className={s.content__img} src={BgProfile}/>
+            <img className={s.content__img} src={BgProfile} alt="img"/>
             <div className='container'>
                 <ProfileInfo
                   profile={props.profile}

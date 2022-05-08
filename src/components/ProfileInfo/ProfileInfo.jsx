@@ -10,7 +10,7 @@ const ProfileInfo = (props) => {
   }
   let contacts = Object.entries(props.profile.contacts).map(p =>
     p[1] !== null && p[1] !== ''
-      ? <div className={s.link__item}>{p[0]} : <a className={s.link} href={p[1]} target='_blank'>{p[1]}</a></div>
+      ? <div className={s.link__item}>{p[0]} : <a className={s.link} href={p[1]}>{p[1]}</a></div>
       : '')
     return (
         <div className={s.container__aboutMe}>

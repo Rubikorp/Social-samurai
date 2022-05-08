@@ -7,7 +7,7 @@ const Header = (props) => {
     return (
         <header className={s.header}>
           <div className={s.logo__block}>
-            <img className={s.logo} src={Logo}/>
+            <img className={s.logo} src={Logo} alt={Logo}/>
             <p className={s.logo__dscr}>
               Samurai
             </p>

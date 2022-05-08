@@ -9,6 +9,7 @@ const Users = (props) => {
 	for (let i=1; i <= pagesCount; i++) {
 		pages.push(i)
 	}
+
 	return (
 		<div className={"container bg " + styles.container__users}>
 			{
@@ -30,8 +31,8 @@ const Users = (props) => {
 									: styles.btn__followed}
 								disabled={props.followProgress.some(id => id === u.id)}
 								onClick={u.followed
-									? () => { props.unFollow(u.id) }
-									: () => { props.follow(u.id) }}>
+									? () => { props.unfollowUser(u.id) }
+									: () => { props.followUser(u.id) }}>
 								{u.followed ? 'Unfollowed' : 'Followed'}
 							</button>
 						</div>
@@ -71,5 +72,6 @@ const Users = (props) => {
 		</div>
 	)
 }
+
 
 export default Users
