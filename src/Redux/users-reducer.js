@@ -1,3 +1,5 @@
+import {userAPI} from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
@@ -15,6 +17,7 @@ let initialState = {
   followingInProgress: []
 }
 
+// Dispatch
 const usersReducer = (state=initialState, action) => {
   switch (action.type) {
     case FOLLOW:
@@ -66,8 +69,9 @@ const usersReducer = (state=initialState, action) => {
   }
 }
 
-export const follow = (userID) => ({type: FOLLOW, userID});
-export const unFollow = (userID) => ({type: UNFOLLOW, userID});
+//ActionCreator
+export const followSuccess = (userID) => ({type: FOLLOW, userID});
+export const unFollowSuccess = (userID) => ({type: UNFOLLOW, userID});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUserCount) =>
@@ -75,6 +79,43 @@ export const setTotalUsersCount = (totalUserCount) =>
 export const toogleIsFetching = (isFetching) => ({type: TOOGLE_IS_FETCHING, isFetching});
 export const toogleFollowingProgress = (isFetching, userId) =>
   ({type: TOOGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
+
+
+// thunkCreator санки
+export const getUser =(currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toogleIsFetching(true))
+
+    userAPI.getUsers(currentPage, pageSize).then(data => {
+      dispatch(setUsers(data.items))
+      dispatch(setTotalUsersCount(data.totalCount))
+      dispatch(toogleIsFetching(false))
+      dispatch(setCurrentPage(currentPage))
+    });
+  }
+}
+
+export const followUser = (userId) => (dispatch) => {
+  dispatch(toogleFollowingProgress(true, userId))
+  userAPI.postFollowUser(userId).then(data => {
+    if(data.resultCode === 0) {
+      dispatch(followSuccess(userId))
+    }
+    dispatch(toogleFollowingProgress(false, userId))
+  })
+}
+
+export const unfollowUser = (userId) => (dispatch) => {
+  dispatch(toogleFollowingProgress(true, userId))
+  userAPI.deleteFollowUser(userId).then(data => {
+    if(data.resultCode === 0) {
+      dispatch(unFollowSuccess(userId))
+    }
+    dispatch(toogleFollowingProgress(false, userId))
+  })
+}
+
+
 
 
 export default usersReducer
