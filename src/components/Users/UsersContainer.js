@@ -5,8 +5,8 @@ import {
   unfollowUser
 } from "../../Redux/users-reducer";
 import Users from './Users';
-import Preloaded from '../Preolader/Preloader';
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
@@ -33,8 +33,6 @@ class UsersAPIComponent extends React.Component {
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect(UsersAPIComponent)
-
 let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -46,8 +44,11 @@ let mapStateToProps = (state) => {
     }
 }
 
-
-export default connect(mapStateToProps, {
+export default compose(
+  connect(mapStateToProps, {
     followUser,
     unfollowUser,
-    getUser})(AuthRedirectComponent);
+    getUser}),
+  withAuthRedirect,
+)(UsersAPIComponent)
+
