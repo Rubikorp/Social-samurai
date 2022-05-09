@@ -2,23 +2,22 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getUserProfile} from "../../Redux/profile-reducer";
-import {Navigate, useParams} from "react-router";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {withRouter} from "../../hoc/withRouter"
 
 
 class ProfileContainer extends  React.Component {
 
   componentDidMount() {
-    let userId
-    Object.entries(this.props.params).map(p => userId = p[1])
-    if (this.props.params === null || this.props.params === '') {
+    let userId = this.props.match.params.userId
+    if (this.props.match.params.userId === null || this.props.match.params.userId === '') {
       userId = this.props.myId
     }
     this.props.getUserProfile(userId)
   }
 
-  render() {
-    if (!this.props.isAuth) return <Navigate to={"/login"} />;
 
+  render() {
     return (
       <Profile
         {...this.props}
@@ -27,19 +26,15 @@ class ProfileContainer extends  React.Component {
   }
 }
 
+//HOC
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+
+//state = getState()
 let mapStateToProps = (state) => ({
     profile: state.profilePages.profile,
     myId: state.auth.userId,
-    isAuth: state.auth.isAuth
 });
 
-const withRouter = (WrappedComponent: typeof React.Component) => {
-  return (props: object) => {
-    const params = useParams(); //useParams возвращает объект пары key/value (ключ/значение) параметров URL.
-    return (
-      <WrappedComponent {...props} params={params}/>
-    );
-  }
-}
 
-export default connect(mapStateToProps, {getUserProfile})(withRouter(ProfileContainer));
+
+export default connect(mapStateToProps, {getUserProfile})(withRouter(AuthRedirectComponent));

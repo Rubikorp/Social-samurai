@@ -6,6 +6,7 @@ import {
 } from "../../Redux/users-reducer";
 import Users from './Users';
 import Preloaded from './Preloader';
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 class UsersAPIComponent extends React.Component {
     componentDidMount() {
@@ -34,6 +35,8 @@ class UsersAPIComponent extends React.Component {
         )
     }
 }
+
+let AuthRedirectComponent = withAuthRedirect(UsersAPIComponent)
 
 let mapStateToProps = (state) => {
     return {
@@ -73,4 +76,4 @@ let mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     followUser,
     unfollowUser,
-    getUser})(UsersAPIComponent);
+    getUser})(AuthRedirectComponent);
