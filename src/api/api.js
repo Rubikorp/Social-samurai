@@ -30,7 +30,7 @@ export const userAPI = {
 	},
 	getProfile(userId) {
 		return instance
-			.get(`profile/${userId}`)
+			.get("profile/"+ userId)
 			.then(response => {
 				return(response.data)
 			})

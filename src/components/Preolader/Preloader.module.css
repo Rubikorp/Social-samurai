@@ -1,0 +1,40 @@
+/* Animations loader */
+.container__loader{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    top:0;
+    left: 0;
+}
+
+
+.loader10{
+    width:100px;
+    height:100px;
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 55%;
+
+}
+@keyframes load{
+    50%{
+        transform:rotatez(180deg);
+        border-style:dashed;
+        border-color:red maroon indianred orangered;
+    }
+    100%{
+        transform:rotatez(360deg);
+    }
+}
+.loader10::before{
+    content:"";
+    color:white;
+    height:50px;
+    width:50px;
+    background:transparent;
+    border-radius:50%;
+    border:20px solid red;
+    animation:load 1s infinite;
+}

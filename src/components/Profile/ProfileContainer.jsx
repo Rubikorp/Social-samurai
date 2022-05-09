@@ -33,6 +33,7 @@ let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
 let mapStateToProps = (state) => ({
     profile: state.profilePages.profile,
     myId: state.auth.userId,
+    loading: state.profilePages.isLoadingProfile
 });
 
 

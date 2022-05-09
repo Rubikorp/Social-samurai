@@ -67,6 +67,9 @@
 }
 
 .btn__followed, .btn__unfollowed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 10px;
     padding: 5px 10px;
     text-decoration: none;
@@ -86,6 +89,7 @@
     border-radius: 2px;
 }
 
+
 .btn__followed:hover {
     background: rgba(0,0,255, 0.8);
 }
@@ -101,40 +105,7 @@
 .container__users {
     display: flex;
     flex-wrap: wrap;
-}
-
-/* Animations loader */
-.container__loader{
-    position: absolute;
-    top: 53.5%;
-    left: 53.5%;
+    position: relative;
 }
 
 
-.loader10{
-    width:100px;
-    height:100px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-@keyframes load{
-    50%{
-        transform:rotatez(180deg);
-        border-style:dashed;
-        border-color:red maroon indianred orangered;
-    }
-    100%{
-        transform:rotatez(360deg);
-    }
-}
-.loader10::before{
-    content:"";
-    color:white;
-    height:50px;
-    width:50px;
-    background:transparent;
-    border-radius:50%;
-    border:20px solid red;
-    animation:load 1s infinite;
-}

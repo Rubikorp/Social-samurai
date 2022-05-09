@@ -22,7 +22,7 @@ function App(props) {
               <div className="app-wrapper-content">
                   <Routes>
                       <Route path="/login" element={<LoginPage />} />
-                      <Route path="/profile/*"
+                      <Route path="/profile/:userId*"
                              element={<ProfileContainer />} />
                       <Route path="/dialogs/*"
                              element={<DialogsContainer/>} />

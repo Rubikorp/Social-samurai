@@ -3,6 +3,7 @@ import {userAPI} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_LOADING_PROFILE ='SET_LOADING_PROFILE';
 
 let initialState = {
     postData: [
@@ -11,6 +12,7 @@ let initialState = {
     ],
     newPostText: '',
     profile: null,
+    isLoadingProfile: false
 }
 
 const profileReducer = (state=initialState, action) => {
@@ -34,6 +36,10 @@ const profileReducer = (state=initialState, action) => {
             return {
                 ...state, profile: action.profile
             }
+        case SET_LOADING_PROFILE:
+            return {
+                ...state, isLoadingProfile: action.loading
+            }
         default:
             return state
     }
@@ -47,9 +53,15 @@ export const onPostChange = (text) =>
 const setUserProfile = (profile) =>
   ({type: SET_USER_PROFILE, profile})
 
+const setLoadingProfile = (loading) =>
+    ({type: SET_LOADING_PROFILE, loading})
+
+
 export const getUserProfile = (userId) => (dispatch) => {
+    dispatch(setLoadingProfile(true))
     userAPI.getProfile(userId).then( data => {
         dispatch(setUserProfile(data))
+        dispatch(setLoadingProfile(false))
       }
     )
 }
