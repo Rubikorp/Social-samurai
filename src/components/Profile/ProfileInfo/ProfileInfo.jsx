@@ -37,12 +37,10 @@ const ProfileInfo = (props) => {
 
               {/*Статус*/}
 
-              <ProfileStatus status={"props.profile.aboutMe"}/>
-
-              <div className={s.status}>
-                  {props.profile.aboutMe}
-              </div>
-
+              <ProfileStatus
+                status={props.status}
+                updateStatus={props.updateStatus}
+              />
               {/*Обо мне*/}
               <div className={s.jobs}>
 	              Сведения о работе:

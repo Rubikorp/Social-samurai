@@ -1,9 +1,10 @@
-import {userAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_LOADING_PROFILE ='SET_LOADING_PROFILE';
+const SET_STATUS = 'SET_STATUS'
 
 let initialState = {
     postData: [
@@ -12,7 +13,8 @@ let initialState = {
     ],
     newPostText: '',
     profile: null,
-    isLoadingProfile: false
+    isLoadingProfile: false,
+    status: ''
 }
 
 const profileReducer = (state=initialState, action) => {
@@ -40,6 +42,10 @@ const profileReducer = (state=initialState, action) => {
             return {
                 ...state, isLoadingProfile: action.loading
             }
+        case SET_STATUS:
+            return  {
+                ...state, status: action.status
+            }
         default:
             return state
     }
@@ -55,15 +61,31 @@ const setUserProfile = (profile) =>
 
 const setLoadingProfile = (loading) =>
     ({type: SET_LOADING_PROFILE, loading})
+const setStatus = (status) =>
+  ({type: SET_STATUS, status})
 
 
 export const getUserProfile = (userId) => (dispatch) => {
     dispatch(setLoadingProfile(true))
-    userAPI.getProfile(userId).then( data => {
+    profileAPI.getProfile(userId).then( data => {
         dispatch(setUserProfile(data))
         dispatch(setLoadingProfile(false))
       }
     )
+}
+
+export const getStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId).then(data=>{
+            dispatch(setStatus(data))
+    })
+}
+
+export const updateStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
+      })
 }
 
 export default profileReducer
