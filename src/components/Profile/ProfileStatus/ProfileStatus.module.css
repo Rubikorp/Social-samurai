@@ -1,0 +1,17 @@
+.status{
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+    color: rgba(255,255,255, 0.8);
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid darkred;
+}
+.edit_mode{
+    padding: 5px;
+    border: none;
+    font-size: 20px;
+    color: white;
+    outline: 1px solid red;
+    box-shadow: 0 0 10px rgba(255, 0,0, 0.8);
+    background: rgba(255, 0,0,0.2);
+}

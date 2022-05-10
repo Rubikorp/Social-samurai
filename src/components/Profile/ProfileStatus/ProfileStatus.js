@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./ProfileStatus.module.css";
 
 class ProfileStatus extends React.Component {
 	state = {
@@ -24,19 +25,31 @@ class ProfileStatus extends React.Component {
 		})
 	}
 
+	componentDidUpdate(prevProps,prevState) {
+		if(prevProps.status !== this.props.status) {
+			this.setState({
+				status: this.props.status
+			})
+		}
+	}
+
 	render() {
 		return (
 			<>
 				{!this.state.editMode &&
 				<div>
-					<h1 onDoubleClick={this.activateEditMode}>
-						{this.props.status !== null ? this.props.status : 'status'}
-					</h1>
+					<div className={styles.status}
+					     onDoubleClick={this.activateEditMode}>
+						{this.props.status !== null && this.props.status !== ""
+							? this.props.status
+							: 'status'}
+					</div>
 				</div>
 				}
 				{this.state.editMode &&
 				<div>
 					<input
+						className={styles.edit_mode}
 						autoFocus={true}
 						onBlur={this.deactivateEditMode}
 						value={this.state.status}
