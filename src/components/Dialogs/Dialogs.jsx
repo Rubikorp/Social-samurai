@@ -2,9 +2,8 @@ import React from "react";
 import s  from "./Dialogs.module.css"
 import DialogsItem from "./DialogsItem/DialogsItem";
 import Message from "./Messages/Message";
-import SendMessage from "./SendMessage/SendMessaje"
 import {Navigate} from "react-router";
-
+import FormSendMessage from "./SendMessage/FormSendMessaje";
 
 
 
@@ -37,10 +36,8 @@ const Dialogs = (props) => {
                                 {messageElement}
                             </div>
                         </div>
-                        <SendMessage
+                        <FormSendMessage
                             sendMessage={props.sendMessage}
-                            onChangeMessage={props.onChangeMessage}
-                            newMessageBody={props.newMessageBody}
                         />
                     </div>
                 </div>

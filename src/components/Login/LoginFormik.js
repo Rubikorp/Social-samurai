@@ -6,7 +6,7 @@ import {Navigate} from "react-router";
 const basic =(props) => (
 	<div>
 		<Formik
-			initialValues={{ email: '', password: '' ,checkbox: ''}}
+			initialValues={{ email: '', password: '' ,rememberMe: ''}}
 			validate={values => {
 				const errors = {};
 				if (!values.email) {
@@ -21,13 +21,9 @@ const basic =(props) => (
 			onSubmit={(values,{ setSubmitting }) => {
 				debugger;
 				setSubmitting(false)
-				LoginApi.postLogin(values.email, values.password, values.rememberMe).then(response => {
-					if(response.resultCode === 0) {
-						debugger;
-						return (<Navigate  to={`/profile/`+response.userId} />)
-					}
-				})
-			}}
+				alert(JSON.stringify(values))
+				}
+			}
 		>
 			{({ isSubmitting }) => (
 				<Form className="container bg">
@@ -36,7 +32,7 @@ const basic =(props) => (
 					<Field type="password" name="password" />
 					<ErrorMessage name="password" component="div" />
 					<Field type="checkbox" name="rememberMe" />
-					<ErrorMessage name="checkbox" component="div" />
+					<ErrorMessage name="rememberMe" component="div" />
 					Remember Me
 					<button type="submit" >
 						Submit

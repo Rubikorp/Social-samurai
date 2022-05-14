@@ -21,7 +21,7 @@ function App(props) {
               <Nav />
               <div className="app-wrapper-content">
                   <Routes>
-                      <Route path="/login2" element={<LoginFormik/>} />
+                      <Route path="/login" element={<LoginFormik/>} />
                       {/*<Route path="/login" element={<LoginPage />} />*/}
                       <Route path="/profile/:userId*"
                              element={<ProfileContainer />} />

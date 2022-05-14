@@ -11,7 +11,6 @@ let initialState = {
         {id:1, message:'Hi, how are you?', like: 3},
         {id:2, message:'Its my first post', like: 4}
     ],
-    newPostText: '',
     profile: null,
     isLoadingProfile: false,
     status: ''
@@ -22,17 +21,11 @@ const profileReducer = (state=initialState, action) => {
         case ADD_POST:
             return {
                 ...state,
-                newPostText: '',
                 postData: [{
                     id: 5,
-                    message: state.newPostText,
+                    message: action.postText,
                     like: 0
                 },...state.postData]
-            }
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText
             }
         case SET_USER_PROFILE:
             return {
@@ -51,10 +44,7 @@ const profileReducer = (state=initialState, action) => {
     }
 }
 
-export const addPost = () => ({type: ADD_POST});
-
-export const onPostChange = (text) =>
-    ({ type: UPDATE_NEW_POST_TEXT, newText: text})
+export const addPost = (postText) => ({type: ADD_POST, postText});
 
 const setUserProfile = (profile) =>
   ({type: SET_USER_PROFILE, profile})
