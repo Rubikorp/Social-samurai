@@ -1,5 +1,5 @@
 import React from "react";
-import {useMatch} from "react-router";
+import {useMatch, } from "react-router";
 
 export const withRouter = (Component) =>{
 	let RouterComponent = (props) => {
