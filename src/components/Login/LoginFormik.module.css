@@ -1,0 +1,48 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+.form input {
+    padding: 5px;
+    margin-top: 10px;
+    border: red 1px solid;
+    background: rgba(255,0,0,0.3);
+    font-size: 18px;
+    color: white;
+}
+
+.form input::placeholder {
+    color: rgba(255,255,255,0.8);
+}
+.form input:focus {
+    outline: 2px red solid;
+}
+
+.form button, .form a{
+    margin: 20px 10px 10px 10px;
+    padding: 5px 15px;
+    font-size: 20px;
+    border: none;
+    background: darkred;
+    color: white;
+
+}
+.form a {
+    text-decoration: none;
+}
+
+.form button:hover , .form a:hover {
+    background: rgba(255,0,0,0.7);
+}
+.validate {
+    color: red;
+}
+.container_button {
+    display: flex;
+}
+

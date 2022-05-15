@@ -23,7 +23,7 @@ function App(props) {
                   <Routes>
                       <Route path="/login" element={<LoginFormik/>} />
                       {/*<Route path="/login" element={<LoginPage />} />*/}
-                      <Route path="/profile/:userId*"
+                      <Route path="/profile/:userId"
                              element={<ProfileContainer />} />
                       <Route path="/dialogs/*"
                              element={<DialogsContainer/>} />
