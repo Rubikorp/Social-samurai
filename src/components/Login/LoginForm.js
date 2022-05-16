@@ -1,25 +1,26 @@
 import React from "react";
 import { Formik, Form, Field} from 'formik';
 import Validation from "./Validation";
-import styles from "./LoginFormik.module.css"
+import styles from "./LoginForm.module.css"
 import stylesBox from "./Checkbox.module.css"
+import {Navigate} from "react-router";
 
-const FormLogin =() => (
+
+const FormLogin =(props) => (
 	<div className="container bg-black">
+		{props.isAuth && <Navigate to={`/profile`}/>}
 		<Formik
 			initialValues={{ email: '', password: '' ,rememberMe: ''}}
 			onSubmit={(values,{ setSubmitting }) => {
-				debugger;
-				setSubmitting(false)
-				alert(JSON.stringify(values))
-				}
-			}
+				setSubmitting(true)
+				let {email, password, rememberMe} = values
+				props.login(email, password, rememberMe)
+				props.isAuth && setSubmitting(false)
+			}}
 		>
-			{({ errors,touched, isValidating }) => (
+			{({ errors,touched, isSubmitting }) => (
 				<Form className={styles.form}>
-					<h1>Sign in</h1>
 					<Field
-						autocomplete="off"
 						type="email" name="email"
 						placeholder="email"
 						validate={Validation.validateEmail}/>
@@ -40,12 +41,12 @@ const FormLogin =() => (
 						 <label for='box' className={stylesBox.label}>Remember Me</label>
 					</div>
 					<div className={styles.container_button}>
-						<button type="submit" >
+						<button type="submit" disabled={isSubmitting} >
 							Submit
 						</button>
 						<a
 							href="https://social-network.samuraijs.com/signUp"
-							target="_blank">Sign up</a>
+							rel='noopener' >Sign up</a>
 					</div>
 				</Form>
 			)}

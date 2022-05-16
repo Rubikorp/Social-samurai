@@ -1,3 +1,5 @@
+
+
 const Validation = {
 	// Валидация email
 	validateEmail(value) {
@@ -13,8 +15,10 @@ const Validation = {
 	// Валидация password
 	validatePassword(value) {
 		let error;
-		if (value.length <= 3) {
-			error = 'more 3 symbols'
+		if (!value) {
+			error = 'Required'}
+		else if (value.length <= 3) {
+			error = 'length 3 symbols'
 		}
 		return error
 	}

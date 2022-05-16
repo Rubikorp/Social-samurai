@@ -4,7 +4,7 @@ const instance = axios.create({
 	withCredentials: true,
 	baseURL: 'https://social-network.samuraijs.com/api/1.0/',
 	headers: {
-		"API-KEY": "07434d35-0284-4cb3-9b9e-6f06eb91fe0b"
+		"API-KEY": "56386e13-608e-4b80-bcff-22e2fc1833c7"
 	}
 });
 
@@ -12,21 +12,15 @@ export const userAPI = {
 	getUsers(currentPage =1, pageSize=10) {
 		return instance
 			.get(`users?page=${currentPage}&count=${pageSize}`)
-			.then(response => {
-				return (response.data)
-			});
+			.then(response => (response.data));
 	},
 	deleteFollowUser(userId) {
 		return instance.delete(`follow/${userId}`)
-			.then(responce => {
-			return (responce.data)
-			});
+			.then(responce => (responce.data));
 	},
 	postFollowUser(userId) {
 		return instance.post(`follow/${userId}`)
-			.then(responce => {
-				return (responce.data)
-			});
+			.then(responce => (responce.data));
 	},
 	getProfile(userId) {
 		console.warn('Obsolete method. Please profileAPI object.')
@@ -38,16 +32,12 @@ export const profileAPI = {
 	getProfile(userId) {
 		return instance
 			.get(`profile/`+ userId)
-			.then(response => {
-				return(response.data)
-			})
+			.then(response => (response.data))
 	},
 	getStatus(userId) {
 		return instance
 			.get(`profile/status/`+userId)
-			.then(response => {
-				return (response.data)
-			})
+			.then(response => (response.data))
 	},
 	updateStatus(status) {
 		return instance
@@ -55,23 +45,13 @@ export const profileAPI = {
 	}
 }
 
-export const LoginApi = {
-	postLogin(email, password, rememberMe) {
-		debugger
-		return instance
-			.post('auth/login',{
-				email: email,
-				password: password,
-				rememberMe: rememberMe,
-				captcha: true
-			})
-	}
-}
-
 export const authAPI = {
 	getAuth() {
-		return instance.get(`auth/me`).then(response=>{
-			return(response.data)
-		})
-	}
-}
+		return instance.get(`auth/me`).then(response=>(response.data)
+		)},
+	login(email, password, rememberMe=false, captcha = true) {
+		return instance.post(`auth/login`, {email, password, rememberMe, captcha}).then(response=>(response.data)
+		)},
+	logout() {
+		return instance.delete(`auth/login`).then(response=>(response.data)
+		)}}

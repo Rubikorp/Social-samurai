@@ -31,6 +31,7 @@
 }
 .bg-black {
   background: black;
+  color: white;
 }
 
 .loading_btn__animation::after{
@@ -55,4 +56,17 @@
   }
 }
 
+.button {
+  margin: 0;
+  padding: 5px;
+  background: none;
+  border: none;
+  color: white;
+  background: darkred;
+  font-weight: bold;
+  font-size: 20px;
+}
+.button:hover {
+  background: firebrick;
+}
 

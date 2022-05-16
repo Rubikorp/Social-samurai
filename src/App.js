@@ -9,7 +9,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import LoginFormik from "./components/Login/LoginFormik";
+import LoginPage from "./components/Login/LoginPage";
 
 
 
@@ -21,8 +21,9 @@ function App(props) {
               <Nav />
               <div className="app-wrapper-content">
                   <Routes>
-                      <Route path="/login" element={<LoginFormik/>} />
-                      {/*<Route path="/login" element={<LoginPage />} />*/}
+                      <Route path="/login" element={<LoginPage />} />
+                    <Route path="/profile"
+                           element={<ProfileContainer />} />
                       <Route path="/profile/:userId"
                              element={<ProfileContainer />} />
                       <Route path="/dialogs/*"
