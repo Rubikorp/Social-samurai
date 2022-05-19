@@ -10,12 +10,9 @@ const FormLogin =(props) => (
 		{props.isAuth && <Navigate to={`/profile`}/>}
 		<Formik
 			initialValues={{ email: '', password: '' ,rememberMe: false, }}
-			onSubmit={(values,{ setSubmitting }) => {
-				setSubmitting(true)
+			onSubmit={(values) => {
 				let {email, password, rememberMe} = values
 				props.login(email, password, rememberMe)
-				props.isAuth && setSubmitting(false)
-
 			}}
 		>
 			{({ errors,touched, isSubmitting,handleSubmit }) => (
@@ -41,14 +38,14 @@ const FormLogin =(props) => (
 						 <label for='box' className={stylesBox.label}>Remember Me</label>
 					</div>
 					<div className={styles.container_button}>
-						<button type="submit" disabled={isSubmitting} >
+						<button type="submit" disabled={props.isLoading} >
 							Submit
 						</button>
 						<a
 							href="https://social-network.samuraijs.com/signUp"
 							rel='noopener' >Sign up</a>
 					</div>
-					{props.errorMessage.map(error => (<div>{error}</div>))}
+					{props.errorMessage.map(error => (<div className={styles.error_server}>{error}</div>))}
 				</Form>
 			)}
 		</Formik>

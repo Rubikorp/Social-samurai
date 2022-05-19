@@ -3,13 +3,15 @@ import {authAPI} from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 const SET_ERROR = 'SET_ERROR'
+const IS_LOADING = 'IS_LOADING'
 
 let initialState = {
 	userId: null,
 	email: null,
 	login: null,
 	isAuth: false,
-	errorMessage: []
+	errorMessage: [],
+	isLoading: false,
 }
 
 const authReducer = (state=initialState, action) => {
@@ -24,6 +26,11 @@ const authReducer = (state=initialState, action) => {
 				...state,
 				errorMessage: action.errorMessage
 			}
+		case IS_LOADING:
+			return {
+				...state,
+				isLoading: action.isLoading
+			}
 
 		default:
 			return state
@@ -34,6 +41,8 @@ export const setAuthUserData = (userId, email, login, isAuth) =>
 	({type: SET_USER_DATA, payload: {userId,email,login, isAuth}})
 export const setErrorMessage = (errorMessage) =>
 	({type: SET_ERROR, errorMessage})
+const isLoading=(isLoading)=>
+	({type: IS_LOADING, isLoading})
 
 export const getAuthUserData = () => (dispatch) => {
 	authAPI.getAuth().then(data=> {
@@ -43,11 +52,14 @@ export const getAuthUserData = () => (dispatch) => {
 			}})}
 
 export const login = (email, password, rememberMe) => (dispatch) => {
+	dispatch(isLoading(true))
 	authAPI.login(email, password, rememberMe).then(data=> {
 			if (data.resultCode === 0) {
 				dispatch(getAuthUserData())
+				dispatch(isLoading(false))
 			} else {
 				dispatch(setErrorMessage(data.messages))
+				dispatch(isLoading(false))
 			}})}
 
 export const logout = () => (dispatch) => {
