@@ -57,6 +57,7 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 			if (data.resultCode === 0) {
 				dispatch(getAuthUserData())
 				dispatch(isLoading(false))
+				dispatch(setErrorMessage([]))
 			} else {
 				dispatch(setErrorMessage(data.messages))
 				dispatch(isLoading(false))

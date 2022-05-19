@@ -3,9 +3,11 @@ import FormLogin from "./LoginForm";
 import {connect} from "react-redux";
 import {login} from "../../Redux/auth-reducer";
 import styles from "./LoginForm.module.css"
+import Preloaded from "../Preolader/Preloader";
 
 const LoginPage = (props) => (
 	<div className="container bg-black">
+		{props.isLoading ? <Preloaded /> : ''}
 		<h1 className={styles.header_form}>Login</h1>
 		<FormLogin
 			{...props}
