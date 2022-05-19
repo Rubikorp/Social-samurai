@@ -1,12 +1,15 @@
 import {authAPI} from "../api/api";
 
+
 const SET_USER_DATA = 'SET_USER_DATA'
+const SET_ERROR = 'SET_ERROR'
 
 let initialState = {
 	userId: null,
 	email: null,
 	login: null,
-	isAuth: false
+	isAuth: false,
+	errorMessage: []
 }
 
 const authReducer = (state=initialState, action) => {
@@ -16,6 +19,12 @@ const authReducer = (state=initialState, action) => {
 				...state,
 				...action.payload
 			}
+		case SET_ERROR:
+			return {
+				...state,
+				errorMessage: action.errorMessage
+			}
+
 		default:
 			return state
 	}
@@ -23,6 +32,8 @@ const authReducer = (state=initialState, action) => {
 
 export const setAuthUserData = (userId, email, login, isAuth) =>
 	({type: SET_USER_DATA, payload: {userId,email,login, isAuth}})
+export const setErrorMessage = (errorMessage) =>
+	({type: SET_ERROR, errorMessage})
 
 export const getAuthUserData = () => (dispatch) => {
 	authAPI.getAuth().then(data=> {
@@ -35,6 +46,8 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 	authAPI.login(email, password, rememberMe).then(data=> {
 			if (data.resultCode === 0) {
 				dispatch(getAuthUserData())
+			} else {
+				dispatch(setErrorMessage(data.messages))
 			}})}
 
 export const logout = () => (dispatch) => {

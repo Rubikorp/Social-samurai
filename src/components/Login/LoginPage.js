@@ -6,13 +6,16 @@ import {login} from "../../Redux/auth-reducer";
 const LoginPage = (props) => (
 	<div className='container bg-black'>
 		<h1>Login</h1>
-		<FormLogin login={props.login} isAuth={props.isAuth} myId={props.myId}/>
+		<FormLogin
+			{...props}
+		/>
 	</div>
 )
 
 const mapStateToProps =(state) => ({
 	isAuth: state.auth.isAuth,
-	myId: state.auth.userId
+	myId: state.auth.userId,
+	errorMessage: state.auth.errorMessage,
 })
 
 export default connect(mapStateToProps, {login}) (LoginPage)

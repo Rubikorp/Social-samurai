@@ -1,24 +1,24 @@
 import React from "react";
-import { Formik, Form, Field} from 'formik';
+import {Formik, Form, Field} from 'formik';
 import Validation from "./Validation";
 import styles from "./LoginForm.module.css"
 import stylesBox from "./Checkbox.module.css"
 import {Navigate} from "react-router";
 
-
 const FormLogin =(props) => (
 	<div className="container bg-black">
 		{props.isAuth && <Navigate to={`/profile`}/>}
 		<Formik
-			initialValues={{ email: '', password: '' ,rememberMe: ''}}
+			initialValues={{ email: '', password: '' ,rememberMe: false, }}
 			onSubmit={(values,{ setSubmitting }) => {
 				setSubmitting(true)
 				let {email, password, rememberMe} = values
 				props.login(email, password, rememberMe)
 				props.isAuth && setSubmitting(false)
+
 			}}
 		>
-			{({ errors,touched, isSubmitting }) => (
+			{({ errors,touched, isSubmitting,handleSubmit }) => (
 				<Form className={styles.form}>
 					<Field
 						type="email" name="email"
@@ -48,6 +48,7 @@ const FormLogin =(props) => (
 							href="https://social-network.samuraijs.com/signUp"
 							rel='noopener' >Sign up</a>
 					</div>
+					{props.errorMessage.map(error => (<div>{error}</div>))}
 				</Form>
 			)}
 		</Formik>
