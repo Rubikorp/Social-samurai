@@ -5,7 +5,6 @@ import {
   unfollowUser
 } from "../../Redux/users-reducer";
 import Users from './Users';
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 class UsersAPIComponent extends React.Component {
@@ -48,7 +47,6 @@ export default compose(
   connect(mapStateToProps, {
     followUser,
     unfollowUser,
-    getUser}),
-  withAuthRedirect,
+    getUser})
 )(UsersAPIComponent)
 

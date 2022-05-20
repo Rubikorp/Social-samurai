@@ -45,7 +45,7 @@ const isLoading=(isLoading)=>
 	({type: IS_LOADING, isLoading})
 
 export const getAuthUserData = () => (dispatch) => {
-	authAPI.getAuth().then(data=> {
+	 return authAPI.getAuth().then(data=> {
 			if (data.resultCode === 0) {
 				let {id, login, email} = data.data
 				dispatch(setAuthUserData(id, email, login, true))
