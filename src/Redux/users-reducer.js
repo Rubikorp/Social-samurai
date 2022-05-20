@@ -82,7 +82,7 @@ export const toogleFollowingProgress = (isFetching, userId) =>
 
 
 // thunkCreator санки
-export const getUser =(currentPage, pageSize) => {
+export const requestUsers =(currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(toogleIsFetching(true))
 
