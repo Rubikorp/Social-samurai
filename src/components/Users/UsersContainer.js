@@ -12,7 +12,7 @@ import {
     getIsFetching,
     getPageSize,
     getTotalUserCount,
-    getUsers
+    getUsers,
 } from "../../Redux/users-selectors";
 
 class UsersAPIComponent extends React.Component {
@@ -30,6 +30,7 @@ class UsersAPIComponent extends React.Component {
 
 
     render() {
+        console.log('renderUser')
         return (
           <>
               <Users {...this.props}
@@ -52,6 +53,7 @@ class UsersAPIComponent extends React.Component {
 // }
 
 let mapStateToProps = (state) => {
+    console.log("mapStateToProps")
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
