@@ -1,5 +1,5 @@
 import './App.css';
-import React from "react";
+import React, {useEffect} from "react";
 import Nav from "./components/Navbar/Navbar";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
@@ -15,14 +15,12 @@ import {initializeApp} from "./Redux/app-reducer";
 import Preloaded from "./components/Preolader/Preloader";
 
 
-class App extends React.Component {
+const App = (props) => {
     // Делаем запрос на сервер
-    componentDidMount() {
-        this.props.initializeApp();
-    }
-
-    render() {
-        if (!this.props.initialized) {
+    useEffect(( ) => {
+        props.initializeApp();
+    }, [props.initialized] )
+        if (!props.initialized) {
             return (<Preloaded />)
         }
         return (
@@ -48,7 +46,6 @@ class App extends React.Component {
                 </div>
             </BrowserRouter>
         );
-    }
 }
 
 const mapStateToProps = (state) => ({
