@@ -1,9 +1,11 @@
 import {profileAPI} from "../api/api";
+import post from "../components/Profile/MyPosts/Post/Post";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_LOADING_PROFILE ='SET_LOADING_PROFILE';
 const SET_STATUS = 'SET_STATUS'
+const DELETE_POST = 'DELETE_POST'
 
 let initialState = {
     postData: [
@@ -26,6 +28,11 @@ const profileReducer = (state=initialState, action) => {
                     like: 0
                 },...state.postData]
             }
+        case DELETE_POST:
+            return {
+                ...state,
+                postData: state.postData.filter(p=>p.id != action.postId)
+            }
         case SET_USER_PROFILE:
             return {
                 ...state, profile: action.profile
@@ -44,6 +51,7 @@ const profileReducer = (state=initialState, action) => {
 }
 
 export const addPost = (postText) => ({type: ADD_POST, postText});
+export const deletePost = (postId) => ({type: DELETE_POST, postId})
 
 const setUserProfile = (profile) =>
   ({type: SET_USER_PROFILE, profile})
