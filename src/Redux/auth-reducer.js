@@ -1,9 +1,9 @@
 import {authAPI} from "../api/api";
 
 
-const SET_USER_DATA = 'SET_USER_DATA'
-const SET_ERROR = 'SET_ERROR'
-const IS_LOADING = 'IS_LOADING'
+const SET_USER_DATA = 'samurai-social/auth/SET_USER_DATA'
+const SET_ERROR = 'samurai-social/auth/SET_ERROR'
+const IS_LOADING = 'samurai-social/auth/IS_LOADING'
 
 let initialState = {
 	userId: null,
@@ -44,29 +44,29 @@ export const setErrorMessage = (errorMessage) =>
 const isLoading=(isLoading)=>
 	({type: IS_LOADING, isLoading})
 
-export const getAuthUserData = () => (dispatch) => {
-	 return authAPI.getAuth().then(data=> {
-			if (data.resultCode === 0) {
-				let {id, login, email} = data.data
-				dispatch(setAuthUserData(id, email, login, true))
-			}})}
+export const getAuthUserData = () =>async (dispatch) => {
+	let response = await authAPI.getAuth();
+	if (response.resultCode === 0) {
+		let {id, login, email} = response.data
+		dispatch(setAuthUserData(id, email, login, true))
+	}}
 
-export const login = (email, password, rememberMe) => (dispatch) => {
+export const login = (email, password, rememberMe) => async (dispatch) => {
 	dispatch(isLoading(true))
-	authAPI.login(email, password, rememberMe).then(data=> {
-			if (data.resultCode === 0) {
-				dispatch(getAuthUserData())
-				dispatch(isLoading(false))
-				dispatch(setErrorMessage([]))
-			} else {
-				dispatch(setErrorMessage(data.messages))
-				dispatch(isLoading(false))
-			}})}
+	let response = await authAPI.login(email, password, rememberMe)
+	if (response.resultCode === 0) {
+		dispatch(getAuthUserData())
+		dispatch(isLoading(false))
+		dispatch(setErrorMessage([]))
+	} else {
+		dispatch(setErrorMessage(response.messages))
+		dispatch(isLoading(false))
+	}}
 
-export const logout = () => (dispatch) => {
-	authAPI.logout().then(data=> {
-			if (data.resultCode === 0) {
-				dispatch(setAuthUserData(null, null, null, false))
-			}})}
+export const logout = () => async (dispatch) => {
+	let response = await authAPI.logout()
+	if (response.resultCode === 0) {
+		dispatch(setAuthUserData(null, null, null, false))
+	}}
 
 export default authReducer;

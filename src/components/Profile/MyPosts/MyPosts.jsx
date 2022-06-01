@@ -11,7 +11,7 @@ const MyPosts = React.memo(props => {
     };
 
     let postElement = props.postData
-        .map(p => (<Post message={p.message} likesCount={p.like}/>))
+        .map(p => (<Post message={p.message} likesCount={p.like} key={p.id}/>))
     return (
         <div className={styles.container}>
             <div className='color__font__white'>My post</div>

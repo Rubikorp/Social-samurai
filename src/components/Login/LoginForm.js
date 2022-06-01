@@ -1,51 +1,44 @@
 import React from "react";
-import {Formik, Form, Field} from 'formik';
-import Validation from "./Validation";
+import {Formik, Form} from 'formik';
+import {validator, boolErrorsTouch} from "../../Utils/Validator";
 import styles from "./LoginForm.module.css"
 import stylesBox from "./Checkbox.module.css"
 import {Navigate} from "react-router";
+import {createField} from "../common/FormControl/form-control";
 
-const FormLogin =(props) => (
+const FormLogin =({isAuth,login,isLoading,errorMessage}) => (
 	<div className="container bg-black">
-		{props.isAuth && <Navigate to={`/profile`}/>}
+		{isAuth && <Navigate to={`/profile`}/>}
 		<Formik
 			initialValues={{ email: '', password: '' ,rememberMe: false, }}
 			onSubmit={(values) => {
 				let {email, password, rememberMe} = values
-				props.login(email, password, rememberMe)
+				login(email, password, rememberMe)
 			}}
 		>
 			{({ errors,touched, isSubmitting,handleSubmit }) => (
 				<Form className={styles.form}>
-					<Field
-						type="email" name="email"
-						placeholder="email"
-						validate={Validation.validateEmail}/>
-					{errors.email && touched.email && <div
+					{createField("email","email","email", validator.validateEmail)}
+					{boolErrorsTouch(errors, touched, 'email') && <div
 						className={styles.validate}>
 						{errors.email}</div>}
-					<Field
-						type="password" name="password"
-						validate={Validation.validatePassword}
-						placeholder="password"/>
-					{errors.password && touched.password  && <div
+					{createField("password","password","password", validator.validatePassword)}
+					{boolErrorsTouch(errors, touched, 'password')  && <div
 						className={styles.validate}>
 						{errors.password }</div>}
 					<div>
-						<Field type="checkbox" name="rememberMe" component="input"
-						className={stylesBox.checkbox}
-						id='box'/>
+						{createField("checkbox","rememberMe", '', '', stylesBox.checkbox, 'box')}
 						 <label for='box' className={stylesBox.label}>Remember Me</label>
 					</div>
 					<div className={styles.container_button}>
-						<button type="submit" disabled={props.isLoading} >
+						<button type="submit" disabled={isLoading} >
 							Submit
 						</button>
 						<a
 							href="https://social-network.samuraijs.com/signUp"
 							rel='noopener' >Sign up</a>
 					</div>
-					{props.errorMessage.map(error => (<div className={styles.error_server}>{error}</div>))}
+					{errorMessage.map(error => (<div className={styles.error_server}>{error}</div>))}
 				</Form>
 			)}
 		</Formik>

@@ -15,6 +15,7 @@ const Profile = (props) => {
                   profile={props.profile}
                   updateStatus={props.updateStatus}
                   status={props.status}
+                  myId={props.myId}
                 />
                 <MyPostsContainer />
             </div>

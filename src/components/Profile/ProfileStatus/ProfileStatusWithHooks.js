@@ -11,7 +11,12 @@ const ProfileStatusWithHooks = (props) => {
 		setStatus(props.status)
 	},[props.status])
 
-	const activateEditMode = () => {setEditMode( true);}
+	const activateEditMode = () => {
+		if (props.profileId === props.myId) {
+			setEditMode( true);
+		}
+	}
+
 	const deactivateEditMode = () => {
 		setEditMode(false)
 		props.updateStatus(status)

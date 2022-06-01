@@ -1,4 +1,5 @@
 import {userAPI} from "../api/api";
+import {updateObjectInArray} from "../Utils/object-helpers";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -21,25 +22,21 @@ let initialState = {
 const usersReducer = (state=initialState, action) => {
   switch (action.type) {
     case FOLLOW:
-      return ({
+      return {
         ...state,
-        users: state.users.map(u => {
-          if (u.id === action.userID) {
-            return ({...u, followed: true})
-          }
-          return u
-        })
-      })
+        users: updateObjectInArray(state.users, action.userID, "id", {followed: true})
+        // users: state.users.map(u => {
+        //   if (u.id === action.userID) {
+        //     return ({...u, followed: true})
+        //   }
+        //   return u
+        // })
+      }
     case UNFOLLOW:
-      return ({
+      return {
         ...state,
-        users: state.users.map(u => {
-          if (u.id === action.userID) {
-            return ({...u, followed: false})
-          }
-          return u
-        })
-      })
+        users: updateObjectInArray(state.users, action.userID, "id", {followed: false})
+        }
     case SET_USERS:
       return ({
         ...state, users: [...action.users]
@@ -95,24 +92,21 @@ export const requestUsers =(currentPage, pageSize) => {
   }
 }
 
-export const followUser = (userId) => (dispatch) => {
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
   dispatch(toogleFollowingProgress(true, userId))
-  userAPI.postFollowUser(userId).then(data => {
-    if(data.resultCode === 0) {
-      dispatch(followSuccess(userId))
-    }
-    dispatch(toogleFollowingProgress(false, userId))
-  })
+
+  let response = await apiMethod(userId)
+  if(response.resultCode === 0) {
+    dispatch(actionCreator(userId))}
+  dispatch(toogleFollowingProgress(false, userId))
 }
 
-export const unfollowUser = (userId) => (dispatch) => {
-  dispatch(toogleFollowingProgress(true, userId))
-  userAPI.deleteFollowUser(userId).then(data => {
-    if(data.resultCode === 0) {
-      dispatch(unFollowSuccess(userId))
-    }
-    dispatch(toogleFollowingProgress(false, userId))
-  })
+export const followUser = (userId) => async (dispatch) => {
+  await followUnfollowFlow(dispatch, userId,userAPI.postFollowUser.bind(userAPI), followSuccess)
+}
+
+export const unfollowUser = (userId) => async (dispatch) => {
+  await followUnfollowFlow(dispatch, userId,userAPI.deleteFollowUser.bind(userAPI), unFollowSuccess)
 }
 
 

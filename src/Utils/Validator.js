@@ -1,6 +1,6 @@
 
 
-const Validation = {
+export const validator = {
 	// Валидация email
 	validateEmail(value) {
 		let error;
@@ -24,4 +24,10 @@ const Validation = {
 	}
 }
 
-export default Validation
+export const boolErrorsTouch = (error, touch, value) => {
+	if (value === 'email') {
+		return (error.email && touch.email)
+	} else if (value === 'password') {
+		return (error.password && touch.password)
+	}
+}
