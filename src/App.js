@@ -10,9 +10,10 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/LoginPage";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {initializeApp} from "./Redux/app-reducer";
 import Preloaded from "./components/Preolader/Preloader";
+import store from "./Redux/redux-store";
 
 
 const App = (props) => {
@@ -52,4 +53,14 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
 
-export default connect(mapStateToProps, {initializeApp})(App);
+// export default connect(mapStateToProps, {initializeApp})(App);
+
+//тестим компоненту
+const AppContainer = connect(mapStateToProps, {initializeApp})(App)
+export const SocialSamurai = (props) => (
+    <React.StrictMode>
+        <Provider store={store}>
+            <AppContainer />
+        </Provider>
+    </React.StrictMode>
+    )
